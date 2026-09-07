@@ -1,0 +1,2836 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#0a0d0f" name="theme-color"/>
+<meta content="Dossier de présentation de l’Ardennes Méga Trail 2027 — Forgés par l’Effort." name="description"/>
+<title>AMT 2027 — Forgés par l’Effort</title>
+<style>:root {
+  color-scheme: dark;
+  --ink: #080a0c;
+  --coal: #0d1114;
+  --iron: #151b1f;
+  --iron-2: #1c2328;
+  --steel: #b8c0c4;
+  --steel-dark: #727b80;
+  --paper: #f1f3f2;
+  --muted: #a5adb1;
+  --ember: #ff5a1f;
+  --ember-deep: #c92f0b;
+  --spark: #ffb41f;
+  --line: rgba(210, 222, 228, .15);
+  --line-strong: rgba(210, 222, 228, .28);
+  --sidebar: 19rem;
+  --topbar: 4.5rem;
+  --radius: 4px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 88% 8%, rgba(255, 90, 31, .13), transparent 24rem),
+    repeating-linear-gradient(115deg, transparent 0 22px, rgba(255,255,255,.012) 23px 24px),
+    var(--coal);
+  color: var(--paper);
+  font-size: 1rem;
+  line-height: 1.62;
+}
+
+button, input { font: inherit; }
+button { color: inherit; }
+
+button:focus-visible, [role="button"]:focus-visible, input:focus-visible {
+  outline: 3px solid var(--spark);
+  outline-offset: 3px;
+}
+
+.loading {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1rem;
+  color: var(--steel);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font: 700 .76rem/1.2 Bahnschrift, "Arial Narrow", sans-serif;
+}
+
+.loading-mark {
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid var(--line-strong);
+  border-top-color: var(--ember);
+  transform: rotate(45deg);
+  animation: temper 1.2s ease-in-out infinite;
+}
+
+@keyframes temper {
+  50% { transform: rotate(135deg) scale(.72); border-top-color: var(--spark); }
+}
+
+.app { min-height: 100vh; }
+
+.sidebar {
+  position: fixed;
+  z-index: 40;
+  inset: 0 auto 0 0;
+  width: var(--sidebar);
+  display: flex;
+  flex-direction: column;
+  background:
+    linear-gradient(150deg, rgba(255,255,255,.045), transparent 26%),
+    linear-gradient(180deg, #11171a, #090c0e 70%);
+  border-right: 1px solid var(--line-strong);
+  box-shadow: 1.5rem 0 4rem rgba(0,0,0,.25);
+}
+
+.brand {
+  min-height: 15rem;
+  padding: 2.1rem 1.65rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.brand::before {
+  content: "";
+  position: absolute;
+  width: 11rem;
+  height: 11rem;
+  top: -5.5rem;
+  right: -4rem;
+  background: radial-gradient(circle, rgba(255,180,31,.85) 0, rgba(255,90,31,.5) 7%, rgba(201,47,11,.18) 28%, transparent 66%);
+  filter: blur(2px);
+}
+
+.brand::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(172deg, transparent 0 9px, rgba(255,255,255,.025) 10px 11px);
+}
+
+.brand-edition, .eyebrow {
+  color: var(--spark);
+  font: 800 .72rem/1 Bahnschrift, "Arial Narrow", sans-serif;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.brand-name {
+  font: 900 2.35rem/.95 Bahnschrift, Impact, sans-serif;
+  letter-spacing: -.045em;
+  margin-top: .55rem;
+}
+
+.brand-name em { color: var(--ember); font-style: normal; }
+.brand-name sup { font-size: .45em; }
+
+.brand-rule {
+  display: block;
+  width: 100%;
+  height: 3px;
+  margin: .9rem 0 .75rem;
+  background: linear-gradient(90deg, var(--ember), var(--spark) 35%, transparent 35%);
+}
+
+.brand-signature {
+  position: relative;
+  z-index: 1;
+  color: var(--steel);
+  font: 800 1rem/.9 Bahnschrift, "Arial Narrow", sans-serif;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.chapter-nav {
+  padding: .75rem 0 1rem;
+  overflow-y: auto;
+  scrollbar-color: var(--steel-dark) transparent;
+}
+
+.nav-item {
+  width: 100%;
+  min-height: 3.65rem;
+  display: grid;
+  grid-template-columns: 2.3rem 1fr;
+  gap: .25rem;
+  align-items: center;
+  padding: .72rem 1.4rem;
+  border: 0;
+  border-left: 3px solid transparent;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: var(--muted);
+  transition: background .18s ease, color .18s ease, border-color .18s ease;
+}
+
+.nav-item:hover { color: var(--paper); background: rgba(255,255,255,.035); }
+.nav-item.active { color: white; border-left-color: var(--ember); background: linear-gradient(90deg, rgba(255,90,31,.15), transparent 82%); }
+
+.nav-number {
+  color: var(--ember);
+  font: 900 .72rem/1 Bahnschrift, "Arial Narrow", sans-serif;
+  letter-spacing: .06em;
+}
+
+.nav-label {
+  font: 720 .78rem/1.15 Bahnschrift, "Arial Narrow", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .035em;
+}
+
+.sidebar-foot {
+  margin-top: auto;
+  padding: 1rem 1.65rem 1.4rem;
+  display: grid;
+  gap: .1rem;
+  border-top: 1px solid var(--line);
+  color: var(--steel-dark);
+  font: 700 .66rem/1.5 Bahnschrift, "Arial Narrow", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.topbar {
+  position: fixed;
+  z-index: 30;
+  inset: 0 0 auto var(--sidebar);
+  height: var(--topbar);
+  padding: 0 clamp(1rem, 3vw, 2.5rem);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(9, 12, 14, .82);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+}
+
+.top-progress {
+  height: 2px;
+  flex: 1;
+  max-width: 16rem;
+  background: var(--line);
+}
+
+.top-progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--ember), var(--spark));
+  box-shadow: 0 0 14px rgba(255,90,31,.7);
+  transition: width .35s ease;
+}
+
+.icon-button, .search-button, .close-button {
+  border: 1px solid var(--line-strong);
+  background: rgba(255,255,255,.035);
+  cursor: pointer;
+}
+
+.icon-button { display: none; }
+
+.search-button {
+  margin-left: auto;
+  min-height: 2.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .5rem .65rem .5rem .85rem;
+  color: var(--steel);
+  border-radius: var(--radius);
+  font-weight: 700;
+}
+
+.search-button:hover { color: white; border-color: var(--steel-dark); }
+
+kbd {
+  padding: .2rem .4rem;
+  border: 1px solid var(--line);
+  background: var(--iron-2);
+  color: var(--steel-dark);
+  border-radius: 3px;
+  font: 700 .66rem/1 ui-monospace, monospace;
+}
+
+.main {
+  min-height: 100vh;
+  margin-left: var(--sidebar);
+  padding: calc(var(--topbar) + clamp(2rem, 5vw, 4.5rem)) clamp(1rem, 5vw, 5.5rem) 0;
+}
+
+.content { max-width: 76rem; margin: 0 auto; }
+
+.cover {
+  min-height: calc(100vh - var(--topbar) - 6rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(18rem, .75fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 6rem);
+}
+
+.cover-copy { position: relative; }
+
+.cover-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  color: var(--steel);
+  font: 800 .78rem/1 Bahnschrift, "Arial Narrow", sans-serif;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.cover-kicker::before { content: ""; width: 2.5rem; height: 2px; background: var(--ember); }
+
+.cover h1 {
+  max-width: 11ch;
+  margin: 1.2rem 0 1.35rem;
+  font: 950 clamp(4.2rem, 10vw, 9.6rem)/.75 Bahnschrift, Impact, sans-serif;
+  letter-spacing: -.075em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.cover h1 span { display: block; }
+.cover h1 .hot { color: var(--ember); text-shadow: 0 0 38px rgba(255,90,31,.18); }
+
+.cover-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 2rem;
+  color: var(--steel);
+  font-weight: 700;
+}
+
+.cover-meta span { display: flex; align-items: center; gap: .6rem; }
+.cover-meta span::before { content: ""; width: 6px; height: 6px; background: var(--spark); transform: rotate(45deg); }
+
+.primary-action {
+  margin-top: 2.1rem;
+  min-height: 3.4rem;
+  padding: .85rem 1.2rem;
+  border: 0;
+  background: linear-gradient(110deg, var(--ember-deep), var(--ember));
+  color: white;
+  font: 850 .82rem/1 Bahnschrift, "Arial Narrow", sans-serif;
+  letter-spacing: .075em;
+  text-transform: uppercase;
+  cursor: pointer;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+
+.chapter-stack { display: grid; gap: .6rem; }
+
+.chapter-jump {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2.5rem 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.025);
+  color: var(--steel);
+  text-align: left;
+  cursor: pointer;
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+
+.chapter-jump:hover { transform: translateX(.35rem); border-color: rgba(255,90,31,.55); background: rgba(255,90,31,.055); }
+.chapter-jump b { color: var(--ember); font: 900 .78rem/1 Bahnschrift, sans-serif; }
+.chapter-jump span { font: 760 .8rem/1.25 Bahnschrift, "Arial Narrow", sans-serif; text-transform: uppercase; }
+.chapter-jump i { color: var(--spark); font-style: normal; }
+
+.chapter-header {
+  position: relative;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  padding: 0 0 1.6rem;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.chapter-header::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 7rem;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ember), var(--spark));
+}
+
+.chapter-index {
+  display: block;
+  margin-bottom: .8rem;
+  color: var(--ember);
+  font: 900 .75rem/1 Bahnschrift, "Arial Narrow", sans-serif;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.chapter-header h1 {
+  max-width: 23ch;
+  margin: 0;
+  font: 900 clamp(2.25rem, 5vw, 5rem)/.93 Bahnschrift, Impact, sans-serif;
+  letter-spacing: -.045em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.cards { display: grid; gap: 1rem; }
+
+.content-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.25rem, 3vw, 2.35rem);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.042), transparent 35%),
+    var(--iron);
+  border: 1px solid var(--line);
+  border-top-color: var(--line-strong);
+  box-shadow: 0 1.5rem 4rem rgba(0,0,0,.13);
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+}
+
+.content-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4.25rem;
+  height: 3px;
+  background: var(--ember);
+}
+
+.content-card[data-tone="fire"] {
+  background:
+    radial-gradient(circle at 92% 0, rgba(255,90,31,.17), transparent 22rem),
+    linear-gradient(145deg, rgba(255,255,255,.042), transparent 35%),
+    var(--iron);
+}
+
+.content-card h2 {
+  margin: 0 0 1.35rem;
+  color: white;
+  font: 880 clamp(1.45rem, 3vw, 2.25rem)/1 Bahnschrift, "Arial Narrow", sans-serif;
+  letter-spacing: -.025em;
+}
+
+.content-card h3 {
+  margin: 1.6rem 0 .65rem;
+  color: var(--spark);
+  font: 820 1.03rem/1.2 Bahnschrift, "Arial Narrow", sans-serif;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+.content-card p { margin: .72rem 0; color: #d7dcde; }
+.content-card p:first-child { margin-top: 0; }
+.content-card p:last-child { margin-bottom: 0; }
+
+.line-item {
+  padding-left: 1.15rem;
+  position: relative;
+}
+
+.line-item::before {
+  content: "";
+  position: absolute;
+  top: .72em;
+  left: .05rem;
+  width: 5px;
+  height: 5px;
+  transform: rotate(45deg);
+  background: var(--ember);
+}
+
+.kicker-line {
+  color: var(--spark) !important;
+  font: 900 .88rem/1.25 Bahnschrift, "Arial Narrow", sans-serif;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.meta-line {
+  display: inline-flex;
+  margin: .25rem .35rem .25rem 0 !important;
+  padding: .52rem .75rem;
+  background: rgba(255,180,31,.09);
+  border: 1px solid rgba(255,180,31,.23);
+  color: #ffd98a !important;
+  font-weight: 750;
+}
+
+.schedule-line {
+  display: grid;
+  grid-template-columns: minmax(9rem, .42fr) 1fr;
+  gap: 1rem;
+  padding: .78rem 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--paper) !important;
+  font-weight: 670;
+}
+
+.schedule-line::first-line { color: var(--spark); }
+
+.flow-line {
+  padding: .75rem 1rem;
+  border-left: 3px solid var(--ember);
+  background: rgba(255,90,31,.07);
+  color: white !important;
+  font: 800 1rem/1.45 Bahnschrift, "Arial Narrow", sans-serif;
+  letter-spacing: .02em;
+}
+
+.down-arrow {
+  height: 2rem;
+  margin: 0 !important;
+  display: grid;
+  place-items: center;
+  color: var(--ember) !important;
+  font-size: 1.3rem;
+}
+
+blockquote {
+  margin: 1.15rem 0;
+  padding: 1rem 1.2rem;
+  border-left: 3px solid var(--spark);
+  background: rgba(255,180,31,.075);
+  color: white;
+  font: 680 1.06rem/1.55 ui-serif, Georgia, serif;
+}
+
+.org-intro { margin-bottom: 1rem; }
+
+.org-tabs {
+  position: sticky;
+  z-index: 8;
+  top: calc(var(--topbar) + .75rem);
+  display: flex;
+  gap: .5rem;
+  margin: 1.3rem 0 1rem;
+  padding: .72rem;
+  overflow-x: auto;
+  background: rgba(9,12,14,.92);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  scrollbar-width: thin;
+}
+
+.org-tab {
+  flex: 0 0 auto;
+  min-height: 2.8rem;
+  padding: .55rem .8rem;
+  border: 1px solid var(--line);
+  background: var(--iron);
+  color: var(--muted);
+  cursor: pointer;
+  font: 800 .72rem/1 Bahnschrift, "Arial Narrow", sans-serif;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.org-tab:hover, .org-tab.active { color: white; border-color: var(--ember); background: rgba(255,90,31,.12); }
+
+.org-panel[hidden] { display: none; }
+
+.org-panel > .content-card:first-child {
+  border-top: 3px solid var(--ember);
+}
+
+.org-panel-title {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 1rem;
+  margin: 0 0 1.3rem;
+}
+
+.org-panel-title span {
+  min-width: 3.6rem;
+  padding: .35rem .5rem;
+  background: var(--ember);
+  color: white;
+  text-align: center;
+  font: 900 .75rem/1 Bahnschrift, sans-serif;
+}
+
+.org-panel-title h2 { margin: 0; }
+
+.pager {
+  max-width: 76rem;
+  margin: 3rem auto 0;
+  padding: 1.25rem 0 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .75rem;
+  border-top: 1px solid var(--line);
+}
+
+.pager-button {
+  min-height: 4.4rem;
+  padding: .8rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.025);
+  color: var(--muted);
+  cursor: pointer;
+  text-align: left;
+}
+
+.pager-button:last-child { text-align: right; align-items: flex-end; }
+.pager-button:hover { border-color: var(--ember); color: white; }
+.pager-button small { color: var(--ember); font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
+.pager-button strong { max-width: 35ch; margin-top: .2rem; font: 750 .84rem/1.25 Bahnschrift, "Arial Narrow", sans-serif; text-transform: uppercase; }
+
+.footer {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 1.4rem 0 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid var(--line);
+  color: var(--steel-dark);
+  font: 750 .68rem/1 Bahnschrift, "Arial Narrow", sans-serif;
+  letter-spacing: .1em;
+}
+
+.search-dialog {
+  width: min(47rem, calc(100% - 2rem));
+  max-height: min(46rem, calc(100vh - 2rem));
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  background: #0f1417;
+  color: var(--paper);
+  box-shadow: 0 2rem 8rem rgba(0,0,0,.72);
+}
+
+.search-dialog::backdrop { background: rgba(0,0,0,.78); backdrop-filter: blur(6px); }
+.search-shell { padding: clamp(1rem, 4vw, 2rem); }
+.search-head { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start; }
+.search-head h2 { margin: .45rem 0 1.25rem; font: 880 clamp(1.5rem, 4vw, 2.4rem)/1 Bahnschrift, sans-serif; text-transform: uppercase; }
+.close-button { width: 2.7rem; height: 2.7rem; font-size: 1.6rem; }
+
+.search-field {
+  min-height: 3.6rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .75rem;
+  align-items: center;
+  padding: 0 1rem;
+  border: 1px solid var(--line-strong);
+  background: var(--ink);
+}
+
+.search-field input { width: 100%; border: 0; outline: 0; background: transparent; color: white; font-size: 1rem; }
+.search-field input::placeholder { color: var(--steel-dark); }
+.search-hint { padding: .8rem .15rem .4rem; color: var(--steel-dark); font-size: .82rem; }
+.search-results { max-height: 28rem; overflow-y: auto; }
+
+.search-result {
+  width: 100%;
+  padding: 1rem .2rem;
+  display: block;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--steel);
+  text-align: left;
+  cursor: pointer;
+}
+
+.search-result:hover { color: white; }
+.search-result b { display: block; margin-bottom: .28rem; color: var(--ember); font: 830 .72rem/1 Bahnschrift, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+.search-result span { line-height: 1.42; }
+.no-result { padding: 2rem 0; color: var(--muted); text-align: center; }
+
+mark { padding: 0 .08em; background: var(--spark); color: #111; }
+
+.scrim { display: none; }
+
+@media (max-width: 980px) {
+  :root { --sidebar: 18rem; }
+
+  .sidebar { transform: translateX(-105%); transition: transform .24s ease; }
+  .sidebar.open { transform: translateX(0); }
+  .scrim { position: fixed; z-index: 35; inset: 0; border: 0; background: rgba(0,0,0,.64); }
+  .scrim.open { display: block; }
+  .topbar { left: 0; }
+  .icon-button { min-height: 2.6rem; display: inline-flex; align-items: center; gap: .55rem; padding: .55rem .75rem; }
+  .main { margin-left: 0; }
+  .cover { grid-template-columns: 1fr; padding-bottom: 3rem; }
+  .cover h1 { font-size: clamp(4rem, 16vw, 8rem); }
+  .chapter-stack { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+
+@media (max-width: 640px) {
+  :root { --topbar: 4.15rem; }
+  body { font-size: 1rem; }
+  .topbar { padding-inline: .75rem; }
+  .button-label, .search-button kbd { display: none; }
+  .search-button { padding-inline: .72rem; }
+  .top-progress { max-width: none; }
+  .main { padding: calc(var(--topbar) + 1.6rem) .85rem 0; }
+  .cover { min-height: calc(100vh - var(--topbar) - 3rem); }
+  .cover h1 { margin-top: .85rem; font-size: clamp(3.7rem, 21vw, 6rem); }
+  .cover-meta { display: grid; gap: .35rem; }
+  .chapter-stack { grid-template-columns: 1fr; }
+  .chapter-header h1 { font-size: clamp(2rem, 10vw, 3.2rem); }
+  .content-card { padding: 1.15rem; }
+  .schedule-line { grid-template-columns: 1fr; gap: .15rem; }
+  .org-tabs { top: calc(var(--topbar) + .35rem); margin-inline: -.85rem; border-inline: 0; }
+  .org-panel-title { grid-template-columns: 1fr; gap: .7rem; }
+  .org-panel-title span { width: fit-content; }
+  .pager { grid-template-columns: 1fr; }
+  .pager-button:last-child { text-align: left; align-items: flex-start; }
+  .footer { flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+  .chapter { max-width: 76rem; margin: 0 auto; }
+  .js .chapter { display: none; }
+  .js .chapter.active { display: block; }
+  .nav-item, .chapter-jump, .pager-button { text-decoration: none; }
+  .organisation-sections { display: grid; gap: .75rem; margin-top: 1rem; }
+  .organisation-section { border: 1px solid var(--line); background: var(--iron); }
+  .organisation-section summary { min-height: 4.4rem; padding: 1rem 1.15rem; display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: center; cursor: pointer; list-style: none; }
+  .organisation-section summary::-webkit-details-marker { display: none; }
+  .organisation-section summary::after { content: "+"; color: var(--ember); font: 900 1.5rem/1 Bahnschrift, sans-serif; }
+  .organisation-section[open] summary::after { content: "−"; }
+  .organisation-section summary strong { font: 820 1rem/1.2 Bahnschrift, sans-serif; text-transform: uppercase; }
+  .organisation-body { padding: .2rem clamp(1rem, 3vw, 2rem) 1.7rem; border-top: 1px solid var(--line); }
+  .organisation-body p { color: #d7dcde; }
+  .search-overlay { position: fixed; z-index: 100; inset: 0; display: grid; place-items: start center; padding: min(10vh, 5rem) 1rem 1rem; background: rgba(0,0,0,.82); backdrop-filter: blur(6px); }
+  .search-overlay[hidden] { display: none; }
+  .search-overlay .search-dialog { position: relative; display: block; margin: 0; overflow: hidden; }
+  .search-result mark { background: transparent; color: inherit; padding: 0; }
+  .fallback-note { display: none; }
+  .no-js .fallback-note { display: block; padding: 1rem; background: #ffb41f; color: #111; }
+  @media (max-width: 640px) {
+    .organisation-section summary { gap: .65rem; }
+  }
+
+
+/* =========================================================
+   AMT 2027 — couche éditoriale "Forgés par l'Effort"
+   Ajout visuel uniquement : aucun contenu rédactionnel modifié.
+   ========================================================= */
+:root {
+  --white-hot: #fff5de;
+  --metal-light: #dfe7e9;
+  --metal-mid: #879297;
+  --bronze: #d79a42;
+  --patina: #9aae9e;
+  --heat-glow: rgba(255, 90, 31, .28);
+  --spark-glow: rgba(255, 180, 31, .22);
+  --card-shadow: 0 1.2rem 3.5rem rgba(0,0,0,.20), inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.34), transparent 26%, transparent 74%, rgba(0,0,0,.24)),
+    radial-gradient(ellipse at 52% -10%, rgba(255,180,31,.06), transparent 40%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.008) 0 1px, transparent 1px 4px);
+  mix-blend-mode: screen;
+}
+
+.content {
+  max-width: 78rem;
+}
+
+/* Editorial rhythm */
+.cards {
+  gap: 1.35rem;
+}
+
+.content-card {
+  isolation: isolate;
+  padding: clamp(1.45rem, 3vw, 2.65rem);
+  box-shadow: var(--card-shadow);
+  transition: border-color .22s ease, transform .22s ease, box-shadow .22s ease;
+}
+
+.content-card::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: -5rem;
+  bottom: -7rem;
+  width: 16rem;
+  height: 16rem;
+  border: 1px solid rgba(255,255,255,.035);
+  transform: rotate(45deg);
+  background: linear-gradient(135deg, transparent 45%, rgba(255,255,255,.018) 46% 54%, transparent 55%);
+  pointer-events: none;
+}
+
+@media (hover:hover) {
+  .content-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(210,222,228,.25);
+    box-shadow: 0 1.5rem 4rem rgba(0,0,0,.26), inset 0 1px 0 rgba(255,255,255,.045);
+  }
+}
+
+.content-card p {
+  max-width: 78ch;
+  margin: .88rem 0;
+  color: #dce1e3;
+  font-size: clamp(1rem, .25vw + .96rem, 1.075rem);
+  line-height: 1.72;
+  letter-spacing: .004em;
+  text-wrap: pretty;
+}
+
+.content-card > p:not(.line-item):not(.kicker-line):not(.meta-line):not(.schedule-line):not(.flow-line) + p:not(.line-item):not(.kicker-line):not(.meta-line):not(.schedule-line):not(.flow-line) {
+  margin-top: .96rem;
+}
+
+.content-card h2 {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: 1.55rem;
+  padding-bottom: .62rem;
+  color: var(--white-hot);
+  text-shadow: 0 1px 0 #000, 0 0 24px rgba(255,255,255,.035);
+}
+
+.content-card h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: min(5.5rem, 65%);
+  height: 2px;
+  background: linear-gradient(90deg, var(--ember), rgba(255,180,31,.9), transparent);
+  box-shadow: 0 0 12px rgba(255,90,31,.32);
+}
+
+.content-card h3 {
+  position: relative;
+  padding-left: .95rem;
+  color: #efc879;
+  letter-spacing: .055em;
+}
+
+.content-card h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .15em;
+  bottom: .15em;
+  width: 2px;
+  background: linear-gradient(var(--spark), var(--ember));
+}
+
+.chapter-header {
+  padding-left: clamp(.1rem, 1vw, .8rem);
+}
+
+.chapter-header h1 {
+  text-shadow: 0 2px 0 rgba(0,0,0,.55), 0 0 34px rgba(255,90,31,.05);
+}
+
+.chapter-index {
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+}
+
+.chapter-index::after {
+  content: "";
+  width: 3rem;
+  height: 1px;
+  background: linear-gradient(90deg, var(--ember), transparent);
+}
+
+/* Better list readability */
+.line-item {
+  max-width: 76ch !important;
+  margin-block: .4rem !important;
+  padding: .56rem .75rem .56rem 1.65rem;
+  border-left: 1px solid rgba(255,90,31,.22);
+  background: linear-gradient(90deg, rgba(255,90,31,.055), transparent 72%);
+}
+
+.line-item::before {
+  left: .62rem;
+  top: 1.02em;
+  width: 6px;
+  height: 6px;
+  box-shadow: 0 0 10px rgba(255,90,31,.42);
+}
+
+.kicker-line {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  margin: 1.2rem 0 1.3rem !important;
+  padding: .72rem 1.05rem .72rem 1rem;
+  border: 1px solid rgba(255,180,31,.26);
+  border-left: 4px solid var(--ember);
+  background:
+    linear-gradient(90deg, rgba(255,90,31,.14), rgba(255,180,31,.045) 62%, transparent),
+    rgba(255,255,255,.015);
+  color: var(--white-hot) !important;
+  font-size: clamp(.92rem, 1.3vw, 1.1rem);
+  text-shadow: 0 0 18px rgba(255,90,31,.22);
+  box-shadow: inset 0 0 22px rgba(255,90,31,.025);
+}
+
+.kicker-line::after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: .34rem;
+  height: 1px;
+  background: linear-gradient(90deg, var(--spark), transparent 65%);
+  opacity: .7;
+}
+
+blockquote {
+  position: relative;
+  overflow: hidden;
+  margin: 1.35rem 0;
+  padding: 1.15rem 1.35rem 1.15rem 1.6rem;
+  border-left-width: 4px;
+  border-top: 1px solid rgba(255,180,31,.11);
+  border-bottom: 1px solid rgba(255,180,31,.11);
+  background:
+    linear-gradient(90deg, rgba(255,180,31,.105), rgba(255,180,31,.025) 68%, transparent),
+    rgba(255,255,255,.012);
+  color: #f3eee3;
+  font-size: clamp(1.04rem, .4vw + .95rem, 1.2rem);
+  line-height: 1.58;
+}
+
+blockquote::after {
+  content: "“";
+  position: absolute;
+  right: .5rem;
+  top: -.62rem;
+  color: rgba(255,180,31,.07);
+  font: 900 7rem/1 Georgia, serif;
+  pointer-events: none;
+}
+
+/* Schedule = forged information plate */
+.schedule-line {
+  position: relative;
+  overflow: hidden;
+  margin: 1.05rem 0 .55rem !important;
+  padding: .86rem 1rem .86rem 1.1rem;
+  border: 1px solid rgba(210,222,228,.13);
+  border-left: 3px solid var(--spark);
+  background: linear-gradient(92deg, rgba(255,180,31,.075), rgba(255,255,255,.018) 55%, transparent);
+  font-family: Bahnschrift, "Arial Narrow", sans-serif;
+  letter-spacing: .015em;
+}
+
+.schedule-line .schedule-time {
+  color: var(--spark);
+  font-weight: 900;
+  letter-spacing: .045em;
+}
+
+.schedule-line .schedule-sep {
+  color: var(--steel-dark);
+  padding-inline: .25rem;
+}
+
+.schedule-line .schedule-title {
+  color: var(--paper);
+  font-weight: 820;
+}
+
+.schedule-line.schedule-date {
+  width: fit-content;
+  padding: .54rem .82rem;
+  border-left-color: var(--ember);
+  color: var(--white-hot) !important;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.flow-line {
+  position: relative;
+  margin: .8rem 0 !important;
+  padding: .9rem 1.1rem .9rem 1.35rem;
+  border: 1px solid rgba(255,90,31,.15);
+  border-left: 4px solid var(--ember);
+  background:
+    linear-gradient(90deg, rgba(255,90,31,.11), rgba(255,180,31,.025) 72%, transparent),
+    rgba(255,255,255,.012);
+  text-shadow: 0 1px 0 #000;
+}
+
+.meta-line {
+  border-left: 3px solid var(--bronze);
+  box-shadow: inset 0 0 18px rgba(255,180,31,.025);
+}
+
+/* Semantic emphasis — based on the document's own explanation of the theme */
+.semantic-word {
+  position: relative;
+  display: inline;
+  font-weight: 800;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.semantic-fire {
+  color: #ff8b4e;
+  text-shadow: 0 0 14px rgba(255,90,31,.17);
+}
+
+.semantic-fire::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -.12em;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,90,31,.85), rgba(255,180,31,.4), transparent);
+}
+
+.semantic-effort {
+  color: #f6f8f8;
+  font-weight: 900;
+  text-decoration-line: underline;
+  text-decoration-color: rgba(223,231,233,.33);
+  text-decoration-thickness: .08em;
+  text-underline-offset: .17em;
+}
+
+.semantic-collective {
+  color: #f0c873;
+  font-weight: 850;
+}
+
+.semantic-territory {
+  color: #b7c9bc;
+  font-weight: 780;
+  text-decoration: underline dotted rgba(154,174,158,.42) 1px;
+  text-underline-offset: .2em;
+}
+
+/* Key statements keep their wording, but become editorial anchors */
+.key-statement {
+  position: relative;
+  max-width: 72ch !important;
+  margin: 1.25rem 0 !important;
+  padding: 1rem 1.2rem 1rem 1.35rem;
+  border-left: 4px solid var(--ember);
+  background:
+    linear-gradient(90deg, rgba(255,90,31,.12), rgba(255,255,255,.02) 64%, transparent);
+  color: var(--white-hot) !important;
+  font-family: Bahnschrift, "Arial Narrow", sans-serif;
+  font-size: clamp(1.04rem, .35vw + .98rem, 1.2rem) !important;
+  font-weight: 820;
+  letter-spacing: .012em;
+}
+
+.key-statement::before {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: 0;
+  width: 4px;
+  height: 42%;
+  background: var(--spark);
+  box-shadow: 0 0 16px rgba(255,180,31,.4);
+}
+
+/* Chapter 3: the visual core of the theme */
+#chapter-3 .cards {
+  gap: 1.6rem;
+}
+
+#chapter-3 .content-card {
+  border-color: rgba(210,222,228,.18);
+}
+
+#chapter-3-0 {
+  background:
+    radial-gradient(circle at 88% 5%, rgba(255,180,31,.12), transparent 16rem),
+    linear-gradient(145deg, rgba(255,255,255,.045), transparent 35%),
+    #151b1f;
+}
+
+#chapter-3-1 {
+  border-left: 3px solid var(--ember);
+  background:
+    radial-gradient(circle at 100% 0, rgba(255,90,31,.19), transparent 19rem),
+    linear-gradient(145deg, rgba(255,90,31,.035), transparent 44%),
+    var(--iron);
+}
+
+#chapter-3-1 h2 {
+  color: #ff8150;
+  font-size: clamp(2rem, 4.2vw, 3.7rem);
+  letter-spacing: -.055em;
+}
+
+#chapter-3-2 {
+  border-left: 3px solid var(--metal-light);
+  background:
+    radial-gradient(circle at 100% 0, rgba(223,231,233,.08), transparent 19rem),
+    linear-gradient(145deg, rgba(255,255,255,.04), transparent 44%),
+    var(--iron);
+}
+
+#chapter-3-2 h2 {
+  color: var(--metal-light);
+  font-size: clamp(2rem, 4.2vw, 3.7rem);
+  letter-spacing: -.055em;
+}
+
+#chapter-3-3 {
+  border-left: 3px solid var(--bronze);
+}
+
+#chapter-3-4 blockquote,
+#chapter-3-5 blockquote {
+  max-width: 70ch;
+  font-weight: 750;
+}
+
+#chapter-3-5 {
+  background:
+    radial-gradient(circle at 92% 8%, rgba(215,154,66,.12), transparent 20rem),
+    linear-gradient(145deg, rgba(255,255,255,.04), transparent 35%),
+    var(--iron);
+}
+
+/* Fire cards: stronger but restrained glow */
+.content-card[data-tone="fire"] {
+  border-color: rgba(255,90,31,.18);
+  box-shadow: 0 1.3rem 4rem rgba(0,0,0,.18), inset 0 1px 0 rgba(255,130,65,.045);
+}
+
+.content-card[data-tone="fire"] h2::after {
+  width: min(7rem, 72%);
+  background: linear-gradient(90deg, var(--ember), var(--spark), transparent);
+}
+
+/* Organisation: clearer industrial hierarchy */
+.organisation-sections {
+  gap: .9rem;
+}
+
+.organisation-section {
+  overflow: hidden;
+  border-color: rgba(210,222,228,.16);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.025), transparent 30%),
+    #12181b;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.022);
+}
+
+.organisation-section summary {
+  position: relative;
+  padding-left: 1.35rem;
+  transition: background .18s ease, color .18s ease;
+}
+
+.organisation-section summary::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--steel-dark);
+  transition: background .18s ease, box-shadow .18s ease;
+}
+
+.organisation-section summary:hover {
+  background: rgba(255,255,255,.025);
+}
+
+.organisation-section[open] summary {
+  background: linear-gradient(90deg, rgba(255,90,31,.08), transparent 70%);
+  color: white;
+}
+
+.organisation-section[open] summary::before {
+  background: var(--ember);
+  box-shadow: 0 0 14px var(--heat-glow);
+}
+
+.organisation-section summary strong {
+  letter-spacing: .025em;
+}
+
+.organisation-body {
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.12), transparent 3rem),
+    rgba(0,0,0,.05);
+}
+
+.organisation-body p {
+  max-width: 92ch;
+  line-height: 1.7;
+}
+
+/* Cover: stronger forged identity without new text */
+.cover-copy::after {
+  content: "";
+  position: absolute;
+  left: clamp(8rem, 24vw, 17rem);
+  top: 8%;
+  width: clamp(8rem, 19vw, 15rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(255,255,255,.045);
+  transform: rotate(45deg);
+  background:
+    linear-gradient(135deg, transparent 42%, rgba(255,90,31,.055) 43% 47%, transparent 48%),
+    radial-gradient(circle at 35% 35%, rgba(255,180,31,.08), transparent 42%);
+  pointer-events: none;
+}
+
+.cover h1 {
+  position: relative;
+  z-index: 1;
+}
+
+.cover h1 .hot {
+  position: relative;
+  display: inline-block;
+  color: #ff7040;
+  text-shadow: 0 0 34px rgba(255,90,31,.22), 0 2px 0 rgba(0,0,0,.6);
+}
+
+.cover h1 .hot::after {
+  content: "";
+  position: absolute;
+  left: .04em;
+  right: .02em;
+  bottom: -.02em;
+  height: .045em;
+  background: linear-gradient(90deg, var(--ember), var(--spark), transparent);
+  box-shadow: 0 0 18px rgba(255,90,31,.5);
+}
+
+.brand-signature {
+  color: #d5dadd;
+  text-shadow: 0 0 18px rgba(255,90,31,.08);
+}
+
+/* Small-screen readability */
+@media (max-width: 640px) {
+  .content-card p { line-height: 1.68; }
+  .line-item { padding-left: 1.45rem; }
+  .line-item::before { left: .52rem; }
+  .schedule-line { padding-inline: .85rem; }
+  .cover-copy::after { opacity: .55; }
+  #chapter-3-1 h2, #chapter-3-2 h2 { font-size: clamp(2rem, 12vw, 3rem); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #chapter-3-1::before,
+  .content-card[data-tone="fire"]::before {
+    box-shadow: 0 0 18px rgba(255,90,31,.16);
+  }
+}
+
+</style>
+
+<style id="amt-forge-ultime">
+/* =========================================================
+   AMT 2027 — FORGÉS PAR L'EFFORT / DIRECTION ARTISTIQUE V3
+   Robustness rule: decorative layers never sit above content.
+   ========================================================= */
+:root {
+  --hot-white: #fff8ef;
+  --hot-gold: #ffd66b;
+  --hot-amber: #ffb41f;
+  --hot-orange: #ff642f;
+  --hot-red: #d63c16;
+  --slag: #26130d;
+  --iron-black: #0a0e10;
+  --iron-dark: #11171a;
+  --iron-mid: #182126;
+  --iron-edge: #2e3940;
+  --steel-hi: #dce4e7;
+  --steel-mid: #98a5aa;
+  --forest-steel: #9eafa1;
+  --collective-gold: #d9ad5b;
+  --spark-pale: #fff0b5;
+  --safe-z-content: 2;
+}
+
+/* Never alter fixed/sticky positioning of the app chrome. */
+.sidebar { z-index: 40; }
+.topbar { z-index: 30; }
+.scrim { z-index: 35; }
+.search-overlay { z-index: 100; }
+
+/* Every thematic page creates its own safe stacking context. */
+.document-page {
+  position: relative;
+  isolation: isolate;
+}
+
+.document-page > * {
+  position: relative;
+  z-index: var(--safe-z-content);
+}
+
+/* Global metal grain is intentionally low-contrast and behind all content. */
+.main::before {
+  content: "";
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  inset: var(--topbar) 0 0 var(--sidebar);
+  background:
+    radial-gradient(circle at 82% 8%, rgba(255,100,47,.035), transparent 23rem),
+    repeating-linear-gradient(115deg, transparent 0 29px, rgba(255,255,255,.008) 30px 31px);
+}
+
+.content { position: relative; z-index: 1; }
+
+/* Chapter headers become real visual identities. */
+.chapter-header {
+  padding: 1.05rem 1.15rem 1.75rem 1.35rem;
+  border: 1px solid rgba(210,222,228,.10);
+  border-bottom-color: var(--line-strong);
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.025), transparent 52%),
+    rgba(255,255,255,.008);
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
+  overflow: hidden;
+}
+
+.chapter-header::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: linear-gradient(180deg, var(--ember), var(--spark));
+  box-shadow: 0 0 18px rgba(255,90,31,.25);
+}
+
+.chapter-header::after {
+  z-index: 0;
+  width: 9rem;
+  height: 3px;
+}
+
+.chapter-header > * { position: relative; z-index: 1; }
+
+.theme-blueprint .chapter-header::before { background: linear-gradient(180deg, #d9ad5b, #aebcc2); box-shadow: none; }
+.theme-race .chapter-header::before { background: linear-gradient(180deg, #dce4e7, #ffb41f); box-shadow: none; }
+.theme-ultra .chapter-header::before { background: linear-gradient(180deg, #ff7445, #dce4e7); }
+.theme-collective .chapter-header::before { background: linear-gradient(180deg, #d9ad5b, #9eafa1); box-shadow: none; }
+.theme-organisation .chapter-header::before { background: linear-gradient(180deg, #ffb41f, #dce4e7); box-shadow: none; }
+
+/* Cards: decorative pseudo-elements are always z-index 0. */
+.content-card {
+  isolation: isolate;
+  overflow: hidden;
+  border-color: rgba(210,222,228,.14);
+  box-shadow: 0 1.15rem 3.2rem rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.content-card > * { position: relative; z-index: 2; }
+.content-card::before { z-index: 1; }
+.content-card::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ---------- ORIGINS / MATIÈRE BRUTE ---------- */
+.visual-origin {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.045), transparent 34%),
+    linear-gradient(180deg, rgba(239,116,68,.035), transparent 10rem),
+    #141a1e;
+}
+
+.visual-origin::after {
+  right: -3.5rem;
+  top: -3.2rem;
+  width: 13rem;
+  height: 13rem;
+  transform: rotate(45deg);
+  border: 1px solid rgba(220,228,231,.055);
+  background:
+    linear-gradient(135deg, transparent 42%, rgba(220,228,231,.028) 43% 46%, transparent 47%),
+    repeating-linear-gradient(0deg, transparent 0 14px, rgba(255,255,255,.012) 14px 15px);
+}
+
+.visual-hinge {
+  border-left: 3px solid #d9ad5b;
+}
+
+.visual-hinge h2 { color: #e6c17a; }
+
+/* ---------- BLUEPRINT / DECISION / ANTICIPATION ---------- */
+.visual-blueprint {
+  background:
+    linear-gradient(90deg, rgba(214,226,232,.032), transparent 52%),
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(214,226,232,.018) 31px 32px),
+    repeating-linear-gradient(90deg, transparent 0 31px, rgba(214,226,232,.012) 31px 32px),
+    #12181b;
+  border-color: rgba(191,205,211,.16);
+}
+
+.visual-blueprint::after {
+  right: 1.15rem;
+  top: 1.05rem;
+  width: 7rem;
+  height: 7rem;
+  opacity: .68;
+  background:
+    radial-gradient(circle at center, transparent 51%, rgba(215,173,91,.14) 52% 53%, transparent 54%),
+    linear-gradient(45deg, transparent 49.2%, rgba(205,218,223,.11) 49.5% 50.5%, transparent 50.8%),
+    linear-gradient(-45deg, transparent 49.2%, rgba(205,218,223,.08) 49.5% 50.5%, transparent 50.8%);
+}
+
+.visual-solution {
+  border-left: 3px solid #d9ad5b;
+}
+
+.visual-solution blockquote {
+  border-left-color: #d9ad5b;
+  background: linear-gradient(90deg, rgba(217,173,91,.105), rgba(255,255,255,.015));
+}
+
+/* ---------- FORGE / FEU / TRANSFORMATION ---------- */
+.visual-forge {
+  border-color: rgba(255,100,47,.19);
+  background:
+    radial-gradient(circle at 88% 0, rgba(255,100,47,.145), transparent 17rem),
+    linear-gradient(145deg, rgba(255,150,95,.04), transparent 34%),
+    #15191c;
+}
+
+.visual-forge::after {
+  inset: 0;
+  background:
+    radial-gradient(circle at 91% 16%, rgba(255,214,107,.14) 0 .14rem, transparent .18rem),
+    radial-gradient(circle at 86% 22%, rgba(255,100,47,.13) 0 .17rem, transparent .21rem),
+    radial-gradient(circle at 94% 29%, rgba(255,214,107,.10) 0 .11rem, transparent .15rem),
+    radial-gradient(circle at 82% 33%, rgba(255,100,47,.09) 0 .1rem, transparent .14rem),
+    linear-gradient(180deg, rgba(255,100,47,.025), transparent 40%);
+}
+
+.visual-fire {
+  border-left: 4px solid var(--hot-orange);
+  box-shadow: 0 1.4rem 3.6rem rgba(0,0,0,.17), inset 0 0 3rem rgba(255,75,20,.025);
+}
+
+.visual-fire h2 {
+  color: #ff8458;
+  font-size: clamp(2rem, 4.4vw, 3.8rem);
+  letter-spacing: -.055em;
+  text-shadow: 0 0 20px rgba(255,100,47,.12);
+}
+
+.visual-manifesto .kicker-line {
+  display: inline-block;
+  padding: .65rem .9rem;
+  border: 1px solid rgba(255,180,31,.22);
+  border-left: 4px solid var(--hot-orange);
+  background: linear-gradient(90deg, rgba(255,100,47,.12), rgba(255,180,31,.035));
+  text-shadow: 0 0 15px rgba(255,180,31,.12);
+}
+
+/* ---------- EFFORT / ACIER / RÉSISTANCE ---------- */
+.visual-effort {
+  background:
+    radial-gradient(circle at 92% 5%, rgba(220,228,231,.07), transparent 16rem),
+    linear-gradient(140deg, rgba(255,255,255,.035), transparent 37%),
+    #12181b;
+  border-color: rgba(220,228,231,.17);
+  border-left: 4px solid #cbd6da;
+}
+
+.visual-effort::after {
+  right: 0;
+  top: 0;
+  width: 11rem;
+  height: 100%;
+  opacity: .4;
+  background:
+    repeating-linear-gradient(115deg, transparent 0 18px, rgba(220,228,231,.025) 19px 20px),
+    linear-gradient(90deg, transparent, rgba(220,228,231,.025));
+}
+
+.visual-effort h2 {
+  color: #dce4e7;
+  font-size: clamp(2rem, 4.4vw, 3.8rem);
+  letter-spacing: -.055em;
+}
+
+/* ---------- COLLECTIF / TRANSMISSION ---------- */
+.visual-collective {
+  background:
+    radial-gradient(circle at 88% 7%, rgba(217,173,91,.09), transparent 18rem),
+    linear-gradient(145deg, rgba(158,175,161,.035), transparent 40%),
+    #14191c;
+  border-color: rgba(217,173,91,.16);
+}
+
+.visual-collective::after {
+  right: 1.2rem;
+  top: 1.1rem;
+  width: 8rem;
+  height: 8rem;
+  opacity: .55;
+  background:
+    radial-gradient(circle at 18% 74%, rgba(217,173,91,.22) 0 .17rem, transparent .2rem),
+    radial-gradient(circle at 48% 48%, rgba(158,175,161,.20) 0 .17rem, transparent .2rem),
+    radial-gradient(circle at 76% 21%, rgba(217,173,91,.20) 0 .17rem, transparent .2rem),
+    linear-gradient(145deg, transparent 22%, rgba(217,173,91,.11) 23% 24%, transparent 25%),
+    linear-gradient(145deg, transparent 50%, rgba(158,175,161,.09) 51% 52%, transparent 53%);
+}
+
+.visual-transmission { border-left: 3px solid #d9ad5b; }
+.visual-purpose { border-left: 3px solid #9eafa1; }
+
+.visual-question blockquote {
+  font-size: clamp(1.12rem, .7vw + 1rem, 1.42rem);
+  border-left: 4px solid var(--hot-amber);
+  background: linear-gradient(90deg, rgba(255,180,31,.115), rgba(255,255,255,.012));
+}
+
+/* ---------- PROGRAMME / COURSE / BALISAGE ---------- */
+.visual-race {
+  background:
+    linear-gradient(180deg, rgba(220,228,231,.025), transparent 8rem),
+    linear-gradient(125deg, rgba(255,180,31,.027), transparent 33%),
+    #13191c;
+  border-color: rgba(201,214,219,.14);
+}
+
+.visual-race::after {
+  right: .9rem;
+  top: .95rem;
+  width: 7.2rem;
+  height: 7.2rem;
+  opacity: .55;
+  background:
+    radial-gradient(circle at 23% 73%, rgba(255,180,31,.22) 0 .16rem, transparent .19rem),
+    radial-gradient(circle at 52% 48%, rgba(220,228,231,.16) 0 .16rem, transparent .19rem),
+    radial-gradient(circle at 78% 21%, rgba(255,180,31,.20) 0 .16rem, transparent .19rem),
+    linear-gradient(142deg, transparent 24%, rgba(255,180,31,.09) 25% 26%, transparent 27%),
+    linear-gradient(142deg, transparent 50%, rgba(220,228,231,.08) 51% 52%, transparent 53%);
+}
+
+.visual-friday { border-left: 3px solid #aebbc0; }
+.visual-saturday { border-left: 3px solid #ffb41f; }
+
+.visual-friday h2::before,
+.visual-saturday h2::before {
+  content: "";
+  display: inline-block;
+  width: .55rem;
+  height: .55rem;
+  margin-right: .6rem;
+  transform: rotate(45deg) translateY(-.06rem);
+  background: currentColor;
+  opacity: .75;
+}
+
+/* ---------- ÉTINCELLE / NAISSANCE / LUMIÈRE ---------- */
+.visual-spark {
+  border-color: rgba(255,214,107,.24);
+  background:
+    radial-gradient(circle at 84% 7%, rgba(255,240,181,.16), transparent 11rem),
+    radial-gradient(circle at 17% 12%, rgba(255,180,31,.085), transparent 10rem),
+    linear-gradient(145deg, rgba(255,240,181,.04), rgba(255,180,31,.018) 46%, transparent 72%),
+    #171b1e;
+  box-shadow: 0 1.5rem 4rem rgba(0,0,0,.17), inset 0 1px 0 rgba(255,240,181,.07);
+}
+
+.visual-spark::before {
+  background: linear-gradient(90deg, #fff0b5, #ffb41f 58%, transparent 58%);
+  box-shadow: 0 0 13px rgba(255,180,31,.22);
+}
+
+.visual-spark::after {
+  inset: 0;
+  opacity: .82;
+  background:
+    radial-gradient(circle at 77% 18%, rgba(255,240,181,.24) 0 .18rem, transparent .21rem),
+    radial-gradient(circle at 82% 24%, rgba(255,180,31,.18) 0 .13rem, transparent .16rem),
+    radial-gradient(circle at 87% 30%, rgba(255,240,181,.17) 0 .1rem, transparent .13rem),
+    radial-gradient(circle at 73% 33%, rgba(255,180,31,.14) 0 .09rem, transparent .12rem),
+    linear-gradient(135deg, transparent 68%, rgba(255,214,107,.045) 69% 71%, transparent 72%);
+}
+
+.visual-spark h2 {
+  color: #ffd66b;
+  text-shadow: 0 0 18px rgba(255,180,31,.15);
+}
+
+.visual-spark .semantic-fire,
+.visual-spark .semantic-word {
+  color: #ffe29b;
+  text-shadow: 0 0 12px rgba(255,180,31,.12);
+}
+
+.line-spark {
+  border-left-color: #ffd66b !important;
+  border-color: rgba(255,214,107,.19) !important;
+  background: linear-gradient(90deg, rgba(255,214,107,.12), rgba(255,240,181,.025) 68%, transparent) !important;
+}
+
+.line-spark .schedule-time { color: #ffe29b !important; }
+
+/* ---------- SUPR'AMT / ENDURANCE / CONTINUITÉ ---------- */
+.visual-ultra {
+  border-color: rgba(255,116,69,.17);
+  background:
+    linear-gradient(180deg, rgba(255,116,69,.05), transparent 8rem),
+    repeating-linear-gradient(115deg, transparent 0 34px, rgba(220,228,231,.011) 35px 36px),
+    #111619;
+}
+
+.visual-ultra::after {
+  right: -1.5rem;
+  bottom: -1.5rem;
+  width: 10rem;
+  height: 10rem;
+  opacity: .65;
+  background:
+    radial-gradient(circle at 0 100%, rgba(255,100,47,.13), transparent 48%),
+    linear-gradient(135deg, transparent 47%, rgba(220,228,231,.035) 48% 49%, transparent 50%);
+}
+
+.visual-ultra h2 { color: #f1f4f5; }
+.visual-deadline { border-left: 4px solid #ff7445; }
+
+.line-ultra {
+  border-left-color: #ff7445 !important;
+  background: linear-gradient(90deg, rgba(255,116,69,.115), rgba(220,228,231,.02) 70%, transparent) !important;
+}
+
+/* ---------- PROGRAMME SYNTHÈSE / TABLEAU ---------- */
+.visual-timetable {
+  background:
+    linear-gradient(180deg, rgba(255,180,31,.05), transparent 8rem),
+    repeating-linear-gradient(0deg, transparent 0 42px, rgba(220,228,231,.012) 42px 43px),
+    #12181b;
+}
+
+.visual-timetable .schedule-line.schedule-date {
+  border: 0;
+  border-left: 4px solid var(--ember);
+  background: linear-gradient(90deg, rgba(255,90,31,.11), transparent 82%);
+}
+
+.visual-timetable .flow-line {
+  margin-block: .45rem !important;
+  padding-block: .72rem;
+}
+
+/* Specific race identities without inventing extra text. */
+.line-amt { border-left-color: #ff6531 !important; }
+.line-rlt { border-left-color: #c9d5d9 !important; }
+.line-kids { border-left-color: #d9ad5b !important; }
+
+/* ---------- PROGRESSION ---------- */
+.visual-progression .flow-line {
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(255,180,31,.09), rgba(255,255,255,.018) 67%, transparent),
+    #13191c;
+}
+
+.visual-progression .flow-line::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 22%;
+  background: linear-gradient(90deg, transparent, rgba(255,180,31,.04));
+  pointer-events: none;
+}
+.visual-progression .flow-line > * { position: relative; z-index: 1; }
+
+/* ---------- COLLECTIF / RECRUTEMENT ---------- */
+.visual-recruit {
+  border-left: 4px solid #d9ad5b;
+}
+
+.visual-recruit .line-item::before {
+  background: #d9ad5b;
+  box-shadow: 0 0 8px rgba(217,173,91,.16);
+}
+
+/* ---------- ORGANISATION / TABLEAU DE PILOTAGE ---------- */
+.visual-organisation,
+.visual-dashboard {
+  background:
+    linear-gradient(180deg, rgba(255,187,77,.05), transparent 8rem),
+    linear-gradient(140deg, rgba(220,228,231,.028), transparent 38%),
+    #12171a;
+  border-color: rgba(255,187,77,.17);
+}
+
+#chapter-7 .organisation-sections {
+  gap: .8rem;
+}
+
+#chapter-7 .visual-org-unit {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid rgba(210,222,228,.14);
+  background:
+    linear-gradient(90deg, rgba(255,187,77,.035), transparent 45%),
+    #11171a;
+  box-shadow: 0 .75rem 2.2rem rgba(0,0,0,.13);
+}
+
+#chapter-7 .visual-org-unit::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #6e787d;
+  pointer-events: none;
+}
+
+#chapter-7 .visual-org-unit[open]::before {
+  background: linear-gradient(180deg, #ffb41f, #ff642f);
+  box-shadow: 0 0 12px rgba(255,180,31,.16);
+}
+
+#chapter-7 .visual-org-unit > * { position: relative; z-index: 1; }
+
+#chapter-7 .organisation-section summary {
+  background: linear-gradient(90deg, rgba(255,187,77,.045), transparent 58%);
+}
+
+#chapter-7 .organisation-section[open] summary {
+  background: linear-gradient(90deg, rgba(255,100,47,.08), rgba(255,187,77,.025) 54%, transparent);
+}
+
+#chapter-7 .organisation-body {
+  background:
+    linear-gradient(180deg, rgba(255,187,77,.025), transparent 8rem),
+    rgba(0,0,0,.045);
+}
+
+/* ---------- Editorial emphasis ---------- */
+.key-statement {
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,.055);
+  border-bottom: 1px solid rgba(255,255,255,.035);
+  box-shadow: inset 0 0 1.8rem rgba(255,90,31,.018);
+}
+
+.semantic-fire { color: #ff8a59; }
+.semantic-effort { text-decoration-color: rgba(220,228,231,.40); }
+.semantic-collective { color: #e3bd72; }
+.semantic-territory { color: #acc0af; }
+
+/* Cleaner typographic rhythm. */
+.content-card p { max-width: 86ch; }
+.content-card h2 { max-width: 31ch; }
+.content-card h3 { max-width: 42ch; }
+
+.content-card p + h3,
+.content-card blockquote + h3 { margin-top: 1.9rem; }
+
+.content-card .line-item {
+  max-width: 88ch;
+  padding-top: .18rem;
+  padding-bottom: .18rem;
+}
+
+/* Cover gets stronger forge presence, still behind text. */
+.cover-copy {
+  isolation: isolate;
+}
+
+.cover-copy::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  left: -2.5rem;
+  top: -3.8rem;
+  width: min(38vw, 28rem);
+  height: min(38vw, 28rem);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,100,47,.12), rgba(255,180,31,.035) 30%, transparent 65%);
+  filter: blur(5px);
+}
+
+.cover-copy > * { position: relative; z-index: 2; }
+
+.cover h1 span:first-child {
+  color: #f5f7f7;
+  text-shadow: 0 2px 0 rgba(255,255,255,.05), 0 0 24px rgba(255,255,255,.03);
+}
+
+.cover h1 .hot {
+  background: linear-gradient(180deg, #ffb05f, #ff642f 57%, #d63c16);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+}
+
+.cover h1 span:last-child {
+  color: #dce4e7;
+  text-shadow: 0 1px 0 rgba(255,255,255,.04);
+}
+
+.chapter-jump {
+  position: relative;
+  overflow: hidden;
+}
+
+.chapter-jump::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0 auto 0 0;
+  width: 0;
+  background: linear-gradient(90deg, rgba(255,100,47,.09), transparent);
+  transition: width .22s ease;
+  pointer-events: none;
+}
+.chapter-jump:hover::after { width: 100%; }
+.chapter-jump > * { position: relative; z-index: 1; }
+
+/* Explicitly guarantee interactive and text elements sit above all motifs. */
+a, button, input, summary, .content-card p, .content-card h2, .content-card h3, .content-card blockquote,
+.schedule-line, .flow-line, .meta-line, .kicker-line, .line-item {
+  position: relative;
+  z-index: 3;
+}
+
+/* Mobile: remove expensive/large motifs first, never content. */
+@media (max-width: 980px) {
+  .main::before { left: 0; }
+}
+
+@media (max-width: 640px) {
+  .chapter-header {
+    padding: .95rem .9rem 1.4rem 1rem;
+    clip-path: none;
+  }
+
+  .chapter-header::before { width: 3px; }
+
+  .content-card::after,
+  .visual-blueprint::after,
+  .visual-race::after,
+  .visual-collective::after,
+  .visual-ultra::after,
+  .visual-origin::after {
+    opacity: .32;
+  }
+
+  .visual-fire h2,
+  .visual-effort h2 {
+    font-size: clamp(1.8rem, 11vw, 2.7rem);
+  }
+
+  .visual-manifesto .kicker-line {
+    display: block;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content-card:hover { transform: none; }
+  .chapter-jump::after { transition: none; }
+}
+</style>
+
+<style id="amt-minimal-update-2026-09-07">
+/* Retouches ciblées uniquement : bouton d'accueil + schéma d'organisation externe. */
+.primary-action {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 2.75rem;
+}
+
+.organisation-schema {
+  width: 100%;
+  overflow: hidden;
+  padding: .55rem;
+  border: 1px solid var(--line-strong);
+  background: #fff;
+  box-shadow: 0 1.15rem 3.2rem rgba(0,0,0,.16);
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+}
+
+.organisation-schema img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 640px) {
+  .primary-action { margin-top: 2.45rem; }
+  .organisation-schema { padding: .3rem; }
+}
+</style>
+</head>
+<body>
+<div class="fallback-note">Le dossier reste entièrement accessible. Les fonctions de navigation rapide et de recherche nécessitent JavaScript.</div>
+<div class="app">
+<aside aria-label="Navigation du dossier" class="sidebar" id="sidebar">
+<a aria-label="Revenir à l’accueil" class="brand" data-page="home" href="#home">
+<span class="brand-edition">17<sup>e</sup> édition</span>
+<span class="brand-name">AMT <em>2027</em></span>
+<span class="brand-rule"></span>
+<span class="brand-signature">Forgés<br/>par l’effort</span>
+</a>
+<nav class="chapter-nav"><a class="nav-item" data-page="home" href="#home"><span class="nav-number">00</span><span class="nav-label">Dossier de présentation</span></a>
+<a class="nav-item" data-page="chapter-1" href="#chapter-1"><span class="nav-number">01</span><span class="nav-label">L’Ardennes Méga Trail 2027 en quelques mots</span></a>
+<a class="nav-item" data-page="chapter-2" href="#chapter-2"><span class="nav-number">02</span><span class="nav-label">Pourquoi une édition en avril ?</span></a>
+<a class="nav-item" data-page="chapter-3" href="#chapter-3"><span class="nav-number">03</span><span class="nav-label">« Forgés par l’Effort » — notre ligne directrice pour 2027</span></a>
+<a class="nav-item" data-page="chapter-4" href="#chapter-4"><span class="nav-number">04</span><span class="nav-label">Le programme sportif de l’AMT 2027</span></a>
+<a class="nav-item" data-page="chapter-5" href="#chapter-5"><span class="nav-number">05</span><span class="nav-label">Le Supr’AMT 2027 — Un défi dans le défi</span></a>
+<a class="nav-item" data-page="chapter-6" href="#chapter-6"><span class="nav-number">06</span><span class="nav-label">Rejoignez le collectif de l’Ardennes Méga Trail 2027</span></a>
+<a class="nav-item" data-page="chapter-7" href="#chapter-7"><span class="nav-number">07</span><span class="nav-label">Organisation du collectif AMT 2027</span></a></nav>
+<div class="sidebar-foot"><span>16 &amp; 17 avril 2027</span><span>Les Hautes-Rivières</span></div>
+</aside>
+<button aria-label="Fermer le sommaire" class="scrim" id="scrim" type="button"></button>
+<header class="topbar">
+<button aria-controls="sidebar" aria-expanded="false" class="icon-button menu-button" id="menuToggle" type="button"><span aria-hidden="true">☰</span><span class="button-label">Sommaire</span></button>
+<div aria-hidden="true" class="top-progress"><span id="progressBar"></span></div>
+<button class="search-button" id="searchOpen" type="button"><span aria-hidden="true">⌕</span><span>Rechercher</span><kbd>Ctrl K</kbd></button>
+</header>
+<main class="main" id="main">
+<section aria-labelledby="home-title" class="chapter document-page active theme-home" id="home">
+<div class="cover">
+<div class="cover-copy">
+<span class="cover-kicker">DOSSIER DE PRÉSENTATION</span>
+<h1 id="home-title"><span>Forgés</span><span class="hot">par</span><span>l’effort</span></h1>
+<div class="cover-meta"><span>ARDENNES MÉGA TRAIL 2027</span><span>17e édition — FORGÉS PAR L’EFFORT</span><span>16 &amp; 17 avril 2027 — Les Hautes-Rivières</span></div>
+<a class="primary-action" data-page="chapter-1" href="#chapter-1">Entrer dans le dossier  →</a>
+</div>
+<div class="chapter-stack">
+<a class="chapter-jump" data-page="chapter-1" href="#chapter-1"><b>01</b><span>L’Ardennes Méga Trail 2027 en quelques mots</span><i aria-hidden="true">↗</i></a>
+<a class="chapter-jump" data-page="chapter-2" href="#chapter-2"><b>02</b><span>Pourquoi une édition en avril ?</span><i aria-hidden="true">↗</i></a>
+<a class="chapter-jump" data-page="chapter-3" href="#chapter-3"><b>03</b><span>« Forgés par l’Effort » — notre ligne directrice pour 2027</span><i aria-hidden="true">↗</i></a>
+<a class="chapter-jump" data-page="chapter-4" href="#chapter-4"><b>04</b><span>Le programme sportif de l’AMT 2027</span><i aria-hidden="true">↗</i></a>
+<a class="chapter-jump" data-page="chapter-5" href="#chapter-5"><b>05</b><span>Le Supr’AMT 2027 — Un défi dans le défi</span><i aria-hidden="true">↗</i></a>
+<a class="chapter-jump" data-page="chapter-6" href="#chapter-6"><b>06</b><span>Rejoignez le collectif de l’Ardennes Méga Trail 2027</span><i aria-hidden="true">↗</i></a>
+<a class="chapter-jump" data-page="chapter-7" href="#chapter-7"><b>07</b><span>Organisation du collectif AMT 2027</span><i aria-hidden="true">↗</i></a></div>
+</div>
+</section>
+<section aria-labelledby="chapter-1-title" class="chapter document-page theme-origins" id="chapter-1">
+<header class="chapter-header">
+<span class="chapter-index">Chapitre 01 / 07</span>
+<h1 id="chapter-1-title">1. L’Ardennes Méga Trail 2027 en quelques mots</h1>
+</header>
+<div class="cards">
+<article class="content-card visual-origin visual-raw" id="chapter-1-0">
+<p>L’Ardennes Méga Trail s’apprête à écrire une nouvelle page de son histoire.</p>
+<p>Les 16 et 17 avril 2027, l’AMT vivra sa 17e édition au départ des Hautes-Rivières, au cœur du massif ardennais.</p>
+<p>Après seize éditions, l’événement a grandi, évolué et changé de dimension, mais son identité reste profondément liée à ce qui l’a vu naître : un territoire, une forêt, des parcours exigeants et une aventure humaine construite collectivement.</p>
+<p>L’AMT, ce sont bien sûr des courses de trail et des milliers de participants qui viennent découvrir les Ardennes. Mais l’AMT ne se résume pas à des kilomètres, du dénivelé ou à une ligne d’arrivée.</p>
+<p>C’est aussi un événement construit grâce à l’engagement de centaines de bénévoles, d’un collectif mobilisé tout au long de l’année, des communes traversées, des acteurs du territoire, des associations, des partenaires privés et des institutions qui nous accompagnent.</p>
+</article>
+<article class="content-card visual-origin visual-hinge" id="chapter-1-1">
+<h2>2027 : une édition charnière</h2>
+<p>Cette 17e édition marquera une évolution importante dans l’histoire de l’Ardennes Méga Trail.</p>
+<p>Pour la première fois, l’événement quittera sa période habituelle du mois de juin pour se dérouler au printemps, les 16 et 17 avril 2027.</p>
+<p>Ce changement de date va nécessairement transformer une partie de nos habitudes : les parcours devront évoluer, notre organisation devra s’adapter et de nouvelles contraintes devront être intégrées.</p>
+<p>Mais changer nos habitudes ne signifie pas changer ce que nous sommes.</p>
+<p>L’objectif reste de proposer un événement exigeant, populaire, convivial et profondément ancré dans son territoire, tout en continuant à faire évoluer notre organisation pour assurer l’avenir de l’AMT.</p>
+</article>
+<article class="content-card visual-forge visual-manifesto" data-tone="fire" id="chapter-1-2">
+<h2>Forgés par l’Effort</h2>
+<p>Cette nouvelle étape de l’histoire de l’AMT sera placée sous une signature :</p>
+<p class="kicker-line">FORGÉS PAR L’EFFORT</p>
+<p>Plus qu’un thème ou qu’une accroche de communication, ces mots constitueront le fil conducteur de l’édition 2027.</p>
+<p>Ils devront donner du sens à ce que nous allons construire collectivement, depuis l’identité visuelle de l’événement jusqu’à l’expérience proposée aux participants et au public.</p>
+<p>Nous y reviendrons dans une partie dédiée de ce dossier afin de définir ce que signifie « Forgés par l’Effort » et surtout comment chacun, dans son domaine et dans sa mission, pourra s’approprier cette ligne directrice pour construire l’AMT 2027.</p>
+<p>Car si cette édition ouvre un nouveau chapitre, notre ambition reste la même :</p>
+<p class="line-item">faire évoluer l’Ardennes Méga Trail sans perdre ce qui fait son identité.</p>
+</article></div>
+<nav aria-label="Navigation entre les chapitres" class="pager">
+<a class="pager-button" data-page="home" href="#home"><small>← Précédent</small><strong>Dossier de présentation</strong></a>
+<a class="pager-button" data-page="chapter-2" href="#chapter-2"><small>Suivant →</small><strong>Pourquoi une édition en avril ?</strong></a>
+</nav>
+</section>
+<section aria-labelledby="chapter-2-title" class="chapter document-page theme-blueprint" id="chapter-2">
+<header class="chapter-header">
+<span class="chapter-index">Chapitre 02 / 07</span>
+<h1 id="chapter-2-title">2. Pourquoi une édition en avril ?</h1>
+</header>
+<div class="cards">
+<article class="content-card visual-blueprint visual-constraints" id="chapter-2-0">
+<p>Le passage de l’Ardennes Méga Trail aux 16 et 17 avril 2027 est une décision importante.</p>
+<p>Elle a été réfléchie à partir de plusieurs éléments :</p>
+<p class="line-item">les épisodes de fortes chaleurs et d’orages rencontrés ces dernières années en juin ;</p>
+<p class="line-item">le retour d’expérience de l’édition 2026 et les adaptations importantes que nous avons dû prendre en urgence ;</p>
+<p class="line-item">les événements de cet été, avec l’incendie qui a touché notre forêt, et qui nous rappellent que le risque incendie doit désormais faire partie des éléments à prendre en compte dans la préparation d’un événement de pleine nature ;</p>
+<p class="line-item">les attentes de la commune des Hautes-Rivières, notre commune d’accueil ;</p>
+<p class="line-item">notre volonté de pérenniser l’événement et de trouver une période plus adaptée ;</p>
+<p class="line-item">la recherche d’un week-end sur lequel aucun autre événement trail n’était déjà installé, afin de limiter autant que possible l’impact de notre changement de date sur les autres organisateurs ;</p>
+<p>plus largement, la prise en compte des autres grands événements du département, afin de trouver notre place dans le calendrier sans venir volontairement nous positionner sur une date déjà occupée.</p>
+<p>Le 16 et 17 avril 2027 nous semble aujourd’hui être le meilleur compromis.</p>
+<p>Cela ne veut pas dire que cette nouvelle date règle toutes les difficultés.</p>
+<p>Elle en supprime certaines, en modifie d’autres et en crée de nouvelles.</p>
+<p>Nous en avons déjà identifié plusieurs :</p>
+<p class="line-item">période de nidification et contraintes environnementales différentes ;</p>
+<p class="line-item">nécessité de retravailler certains parcours avec le PNRA, l’ONF et les acteurs concernés ;</p>
+<p class="line-item">météo potentiellement plus froide et humide ;</p>
+<p class="line-item">adaptation du matériel, des ravitaillements et des dispositifs de sécurité ;</p>
+<p>nouvelle organisation logistique liée à la période de l’année.</p>
+<p>Et il y en aura certainement d’autres auxquelles nous n’avons pas encore pensé.</p>
+</article>
+<article class="content-card visual-blueprint visual-solution" id="chapter-2-1">
+<h2>À nous de les identifier ensemble</h2>
+<p>C’est aussi le rôle du collectif.</p>
+<p>Chacun, par son expérience et par la connaissance de sa mission, peut identifier une conséquence du changement de date que nous n’aurions pas anticipée.</p>
+<p>Il faut nous la faire remonter.</p>
+<p>Mais nous souhaitons installer pour 2027 une manière simple de fonctionner :</p>
+<p class="line-item">identifier un problème doit nous permettre de chercher une solution.</p>
+<blockquote>Plutôt que :</blockquote>
+<blockquote>« J’ai entendu dire que… »</blockquote>
+<blockquote>« Tu es sûr que vous avez pensé à… ? »</blockquote>
+<blockquote>« Est-ce que c’était vraiment une bonne idée ? »</blockquote>
+<blockquote>Nous voulons privilégier :</blockquote>
+<blockquote>« J’ai identifié ce point. Voilà ce que cela pourrait entraîner pour ma mission. Comment pouvons-nous l’anticiper ? »</blockquote>
+<p>Le changement de date est désormais acté.</p>
+<p>Notre énergie doit donc être consacrée non pas à refaire la décision, mais à construire collectivement le meilleur AMT possible les 16 et 17 avril 2027.</p>
+<p>Parce qu’un événement comme l’AMT se construit ensemble.</p>
+<p>Et si nous voulons partager collectivement la réussite, nous devons aussi partager collectivement les questions, les difficultés et surtout la recherche des solutions.</p>
+</article></div>
+<nav aria-label="Navigation entre les chapitres" class="pager">
+<a class="pager-button" data-page="chapter-1" href="#chapter-1"><small>← Précédent</small><strong>L’Ardennes Méga Trail 2027 en quelques mots</strong></a>
+<a class="pager-button" data-page="chapter-3" href="#chapter-3"><small>Suivant →</small><strong>« Forgés par l’Effort » — notre ligne directrice pour 2027</strong></a>
+</nav>
+</section>
+<section aria-labelledby="chapter-3-title" class="chapter document-page theme-forge" id="chapter-3">
+<header class="chapter-header">
+<span class="chapter-index">Chapitre 03 / 07</span>
+<h1 id="chapter-3-title">3. « Forgés par l’Effort » — notre ligne directrice pour 2027</h1>
+</header>
+<div class="cards">
+<article class="content-card visual-forge visual-manifesto" id="chapter-3-0">
+<p>Chaque édition de l’Ardennes Méga Trail possède son identité.</p>
+<p>Pour 2027, nous avons choisi :</p>
+<p class="kicker-line">FORGÉS PAR L’EFFORT</p>
+<p>Ces trois mots ne doivent pas être uniquement un slogan posé sur une affiche.</p>
+<p>Ils doivent devenir le fil conducteur de toute l’édition 2027 et nous aider à donner du sens à ce que nous allons construire ensemble.</p>
+</article>
+<article class="content-card visual-forge visual-fire" id="chapter-3-1">
+<h2>FORGÉS</h2>
+<p>La forge évoque la matière, le feu, la transformation, le travail et le savoir-faire.</p>
+<p>Elle fait également écho à l’histoire de notre territoire, à son passé industriel et ouvrier, aux femmes et aux hommes qui l’ont façonné.</p>
+<p>Forger, c’est partir d’une matière brute, la travailler, la mettre à l’épreuve et la transformer.</p>
+<p>Une image qui correspond particulièrement bien à l’AMT et aux Ardennes.</p>
+</article>
+<article class="content-card visual-effort visual-steel" id="chapter-3-2">
+<h2>PAR L’EFFORT</h2>
+<p>L’effort est évidemment celui du coureur.</p>
+<p>Celui nécessaire pour affronter les sentiers, les montées, les descentes, la météo, la fatigue et les kilomètres.</p>
+<p>Mais l’effort ne s’arrête pas à la course.</p>
+<p>C’est aussi celui du bénévole qui donne de son temps, du responsable de mission qui prépare son organisation pendant plusieurs mois, des équipes présentes sur le terrain, des partenaires qui nous accompagnent et de toutes celles et ceux qui contribuent à construire l’événement.</p>
+<p>L’AMT lui-même se forge par l’effort collectif.</p>
+</article>
+<article class="content-card visual-collective visual-purpose" id="chapter-3-3">
+<h2>Donner du sens à ce que nous faisons</h2>
+<p>Cette identité doit pouvoir se retrouver partout dans l’événement :</p>
+<p class="line-item">dans notre charte graphique et notre communication ;</p>
+<p class="line-item">dans la décoration et la scénographie des différents espaces ;</p>
+<p class="line-item">dans nos départs et nos arrivées ;</p>
+<p class="line-item">dans les animations proposées pendant le week-end ;</p>
+<p class="line-item">dans le village et les espaces accueillant participants et accompagnateurs ;</p>
+<p class="line-item">dans les lots participants et finishers ;</p>
+<p class="line-item">dans notre manière de raconter les parcours et le territoire ;</p>
+<p>dans les projets imaginés par chaque mission du collectif.</p>
+<p>Cela ne signifie évidemment pas qu’il faut mettre du métal, des enclumes et du feu partout.</p>
+<p>L’objectif est beaucoup plus simple :</p>
+<p class="line-item">mettre du sens derrière nos choix.</p>
+</article>
+<article class="content-card visual-question visual-purpose" id="chapter-3-4">
+<h2>Une question à nous poser</h2>
+<p>Lorsqu’une idée ou un nouveau projet est proposé pour l’AMT 2027, nous devons pouvoir nous poser une question :</p>
+<blockquote>« En quoi cette idée raconte-t-elle Forgés par l’Effort ? »</blockquote>
+<p>Parfois, le lien sera évident.</p>
+<p>Parfois, il sera plus subtil : l’effort, la transformation, le collectif, le territoire, le savoir-faire, la transmission, la matière…</p>
+<p>Et certaines actions seront simplement fonctionnelles et n’auront pas besoin d’être artificiellement rattachées au thème.</p>
+<p>Mais lorsque nous créons quelque chose qui participe à l’identité ou à l’expérience de l’événement, cette ligne directrice doit nous aider à faire des choix.</p>
+</article>
+<article class="content-card visual-collective visual-transmission" id="chapter-3-5">
+<h2>Une identité à construire collectivement</h2>
+<p>Tout n’est volontairement pas défini aujourd’hui.</p>
+<blockquote>« Forgés par l’Effort » doit aussi devenir un terrain de création pour le collectif.</blockquote>
+<p>Chaque mission peut apporter ses idées, ses compétences et sa vision.</p>
+<p>L’objectif n’est pas que quelques personnes imaginent l’identité de l’AMT 2027 et demandent ensuite aux autres de l’appliquer.</p>
+<p>Nous voulons que chacun puisse participer à sa construction.</p>
+<p>Si nous réussissons, le dimanche suivant l’événement, il ne restera pas seulement une affiche ou un slogan.</p>
+<p>Participants, bénévoles, partenaires et spectateurs devront avoir vécu une édition qui avait une identité et une cohérence.</p>
+<p>Une édition construite autour de son territoire, de celles et ceux qui le font vivre et de ce que représente l’Ardennes Méga Trail.</p>
+<p>Une édition Forgée par l’Effort.</p>
+</article></div>
+<nav aria-label="Navigation entre les chapitres" class="pager">
+<a class="pager-button" data-page="chapter-2" href="#chapter-2"><small>← Précédent</small><strong>Pourquoi une édition en avril ?</strong></a>
+<a class="pager-button" data-page="chapter-4" href="#chapter-4"><small>Suivant →</small><strong>Le programme sportif de l’AMT 2027</strong></a>
+</nav>
+</section>
+<section aria-labelledby="chapter-4-title" class="chapter document-page theme-race" id="chapter-4">
+<header class="chapter-header">
+<span class="chapter-index">Chapitre 04 / 07</span>
+<h1 id="chapter-4-title">4. Le programme sportif de l’AMT 2027</h1>
+</header>
+<div class="cards">
+<article class="content-card visual-race visual-program-intro" id="chapter-4-0">
+<p>L’édition 2027 proposera un programme renouvelé, construit autour des épreuves historiques de l’Ardennes Méga Trail mais aussi de nouveaux formats.</p>
+<p>L’objectif est de conserver une offre allant de la découverte du trail jusqu’à l’ultra, tout en proposant différentes façons de vivre et de découvrir l’AMT et le territoire.</p>
+</article>
+<article class="content-card visual-race visual-friday" id="chapter-4-1">
+<h2>Vendredi 16 avril</h2>
+<p class="schedule-line">À partir de 14h — Marches</p>
+<p>4 parcours : 6 km • 10 km • 13 km • 28 km</p>
+<p>Les parcours seront accessibles à partir du vendredi à 14h, avec des départs possibles jusqu’au samedi à 10h (dernier départ).</p>
+<p class="schedule-line">18h30 — LST — environ 28 km</p>
+<p>La LST ouvrira le programme trail du week-end.</p>
+</article>
+<article class="content-card visual-race visual-saturday" id="chapter-4-2">
+<h2>Samedi 17 avril</h2>
+<p class="schedule-line line-amt">00h01 — AMT — 100 km</p>
+<p>L’épreuve emblématique de l’Ardennes Méga Trail évoluera en 2027 pour atteindre les 100 km.</p>
+<p class="schedule-line line-rlt">5h00 — RLT — 55 km</p>
+<p>Le Roc la Tour conservera sa place parmi les grandes distances de l’AMT avec un départ matinal à 5h.</p>
+<p class="schedule-line line-kids">De 10h à 11h — Les 3 courses AMT Kid’s</p>
+<p>Les trois courses destinées aux enfants et aux adolescents seront regroupées le samedi matin entre 10h et 11h.</p>
+<p>En 2026, l’Enfer des Kid’s, destiné aux adolescents, était organisé séparément le vendredi soir. En 2027, il rejoindra les deux autres courses Kid’s du samedi matin.</p>
+<p>Ce regroupement doit permettre de créer une véritable continuité dans notre programme :</p>
+<p class="flow-line line-spark line-kids">les plus petits → les plus grands → les adolescents → Étincelle 6 km</p>
+<p>Une progression naturelle qui permet d’accompagner les jeunes vers des distances de plus en plus importantes et, pourquoi pas, de leur donner envie un jour de rejoindre les autres épreuves de l’AMT.</p>
+<p class="schedule-line line-spark">11h30 — ÉTINCELLE — 6 km</p>
+<p>Une nouvelle épreuve fait son apparition dans le programme de l’AMT.</p>
+<p>Étincelle sera notre nouveau format de découverte du trail.</p>
+<p>Une distance courte et accessible, mais sur un véritable parcours trail, permettant de découvrir l’univers de l’Ardennes Méga Trail sans devoir immédiatement se confronter aux distances plus importantes.</p>
+<p>Sa création répond également à un objectif d’organisation.</p>
+<p>La CDS attire aujourd’hui beaucoup de participants. L’objectif d’Étincelle n’est pas nécessairement d’accueillir toujours plus de monde sur l’AMT, mais de mieux répartir les participants entre deux distances accessibles : Étincelle 6 km et CDS 13 km.</p>
+<p>À terme, cette nouvelle course doit ainsi contribuer à désengorger la CDS, tout en proposant une porte d’entrée encore plus accessible vers l’AMT.</p>
+</article>
+<article class="content-card visual-race visual-progression" id="chapter-4-3">
+<h2>Un horaire qui a du sens</h2>
+<p>Le départ d’Étincelle à 11h30, juste après les courses Kid’s, est volontaire.</p>
+<p>Les participants d’Étincelle et leurs accompagnateurs seront déjà présents autour de la zone de départ pendant les courses des enfants.</p>
+<p>L’objectif est simple : profiter de cette présence pour offrir davantage de public et d’encouragements aux jeunes coureurs.</p>
+<p>Le programme du samedi matin formera ainsi un ensemble cohérent :</p>
+<p class="flow-line line-spark line-kids">Kid’s → adolescents → Étincelle</p>
+<p>avec une montée progressive vers la pratique du trail adulte.</p>
+</article>
+<article class="content-card visual-spark visual-race" data-tone="fire" id="chapter-4-4">
+<h2>Pourquoi « Étincelle » ?</h2>
+<p>Son nom n’a pas été choisi au hasard.</p>
+<p>L’Étincelle, c’est celle qui peut faire naître une envie, une passion ou simplement donner envie d’aller un peu plus loin.</p>
+<p>Elle trouve également naturellement sa place dans l’identité « Forgés par l’Effort ».</p>
+<p>Dans l’univers de la forge, l’étincelle évoque le feu, la matière que l’on commence à travailler et le début d’une transformation.</p>
+<p>À l’AMT, nous voulons qu’elle représente surtout le début de quelque chose.</p>
+<p>Une première expérience, une nouvelle envie, un défi que l’on pensait peut-être inaccessible…</p>
+<p>Parce qu’une étincelle suffit parfois pour transformer un rêve en réalité.</p>
+<p class="schedule-line">18h00 — CDS — 13 km</p>
+<p>La CDS viendra clôturer le programme trail de cette édition 2027.</p>
+<p>Avec l’arrivée d’Étincelle, elle conservera son rôle de distance courte de l’AMT tout en s’adressant progressivement à des participants souhaitant franchir une étape supplémentaire après la découverte.</p>
+</article>
+<article class="content-card visual-ultra visual-race" data-tone="fire" id="chapter-4-5">
+<h2>Le Supr’AMT 2027 — un nouveau format</h2>
+<p>Le Supr’AMT sera profondément transformé.</p>
+<p>Il ne constituera plus une épreuve supplémentaire avec son propre parcours.</p>
+<p>En 2027, relever le défi du Supr’AMT consistera à enchaîner :</p>
+<p class="flow-line line-ultra">LST → AMT → CDS</p>
+<p>avec une règle essentielle :</p>
+<p class="line-item">terminer chaque épreuve dans les délais permettant de prendre le départ de la suivante.</p>
+<p>Un défi qui commencera donc le vendredi à 18h30 avec la LST et ne s’achèvera que le samedi avec la CDS.</p>
+<p>Le fonctionnement précis, les conditions de participation et la philosophie de ce nouveau Supr’AMT sont développés dans le chapitre suivant.</p>
+</article>
+<article class="content-card visual-timetable visual-race" id="chapter-4-6">
+<h2>AMT 2027 — le programme en un coup d’œil</h2>
+<p class="schedule-line">VENDREDI 16 AVRIL</p>
+<p class="flow-line">14h00 → Ouverture des Marches — 6 / 10 / 13 / 28 km</p>
+<p class="flow-line">18h30 → LST — environ 28 km</p>
+<p class="schedule-line">SAMEDI 17 AVRIL</p>
+<p class="flow-line line-amt">00h01 → AMT — 100 km</p>
+<p class="flow-line line-rlt">05h00 → RLT — 55 km</p>
+<p class="flow-line">10h00 → Derniers départs des Marches</p>
+<p class="flow-line line-kids">10h00 à 11h00 → 3 courses AMT Kid’s</p>
+<p class="flow-line line-spark">11h30 → Étincelle — 6 km</p>
+<p class="flow-line">18h00 → CDS — 13 km</p>
+<p class="flow-line line-ultra">SUPR’AMT → LST + AMT + CDS</p>
+</article>
+<article class="content-card visual-spark visual-progression" data-tone="fire" id="chapter-4-7">
+<h2>Une idée à construire : d’Étincelle à l’AMT 2031</h2>
+<p>La création d’Étincelle ouvre également une piste que nous pourrions développer sur plusieurs années.</p>
+<p>L’idée serait de proposer aux participants une véritable progression au sein de l’Ardennes Méga Trail, en les invitant chaque année à repousser un peu plus leurs limites.</p>
+</article>
+<article class="content-card visual-spark visual-progression" id="chapter-4-8">
+<h2>Cinq années pour grandir avec nous</h2>
+<p class="flow-line line-spark">2027 → Étincelle — 6 km</p>
+<p aria-hidden="true" class="down-arrow">↓</p>
+<p class="flow-line">2028 → CDS — 13 km</p>
+<p aria-hidden="true" class="down-arrow">↓</p>
+<p class="flow-line">2029 → LST — environ 28 km</p>
+<p aria-hidden="true" class="down-arrow">↓</p>
+<p class="flow-line">2030 → Roc la Tour — 55 km</p>
+<p aria-hidden="true" class="down-arrow">↓</p>
+<p class="flow-line line-amt">2031 → AMT — 100 km</p>
+<p>Un participant ayant réalisé successivement les quatre premières étapes entre 2027 et 2030 se verrait alors offrir son dossard pour l’AMT 2031.</p>
+<p>Au-delà de la récompense, l’idée est surtout de raconter une progression.</p>
+<p>Commencer par 6 km. Revenir l’année suivante. Repousser progressivement ses limites. Grandir avec l’événement jusqu’à être capable, cinq ans plus tard, de prendre le départ de l’AMT.</p>
+<p>Le dossard offert en 2031 viendrait ainsi récompenser l’effort, la progression et la fidélité.</p>
+<p>Cette idée donnerait également encore davantage de sens au nom de notre nouvelle course :</p>
+<p class="line-item">ÉTINCELLE — Là où tout commence.</p>
+<p>Parce qu’une étincelle peut devenir un feu.</p>
+<p>Et qu’année après année, ce qui semblait inaccessible peut devenir votre prochain défi.</p>
+</article></div>
+<nav aria-label="Navigation entre les chapitres" class="pager">
+<a class="pager-button" data-page="chapter-3" href="#chapter-3"><small>← Précédent</small><strong>« Forgés par l’Effort » — notre ligne directrice pour 2027</strong></a>
+<a class="pager-button" data-page="chapter-5" href="#chapter-5"><small>Suivant →</small><strong>Le Supr’AMT 2027 — Un défi dans le défi</strong></a>
+</nav>
+</section>
+<section aria-labelledby="chapter-5-title" class="chapter document-page theme-ultra" id="chapter-5">
+<header class="chapter-header">
+<span class="chapter-index">Chapitre 05 / 07</span>
+<h1 id="chapter-5-title">5. Le Supr’AMT 2027 — Un défi dans le défi</h1>
+</header>
+<div class="cards">
+<article class="content-card visual-ultra" id="chapter-5-0">
+<p>Le Supr’AMT évolue profondément en 2027.</p>
+<p>Après le format proposé en 2026, nous souhaitons revenir à un principe plus simple à organiser, mais pas forcément plus simple à réaliser.</p>
+<p>Le Supr’AMT ne disposera plus de son propre parcours.</p>
+<p>Pour devenir Supr’AMT 2027, il faudra enchaîner trois courses du programme :</p>
+<p class="flow-line line-ultra">LST → AMT → CDS</p>
+<p>soit environ :</p>
+<p class="line-item">28 km + 100 km + 13 km = 141 km</p>
+<p>Mais additionner les kilomètres ne suffit pas.</p>
+</article>
+<article class="content-card visual-ultra visual-deadline" id="chapter-5-1">
+<h2>La véritable difficulté : être à l’heure</h2>
+<p>Le principe du Supr’AMT 2027 repose sur une règle très simple :</p>
+<p class="line-item">pour poursuivre l’aventure, il faut avoir terminé une course avant le départ de la suivante.</p>
+<p class="schedule-line">Vendredi — 18h30</p>
+<p>Départ LST — environ 28 km</p>
+<p aria-hidden="true" class="down-arrow">↓</p>
+<p>Terminer et être prêt à repartir.</p>
+<p class="schedule-line">Samedi — 00h01</p>
+<p>Départ AMT — 100 km</p>
+<p aria-hidden="true" class="down-arrow">↓</p>
+<p>Terminer avant le départ de la CDS.</p>
+<p class="schedule-line">Samedi — 18h00</p>
+<p>Départ CDS — 13 km</p>
+<p aria-hidden="true" class="down-arrow">↓</p>
+<p>Finisher Supr’AMT 2027</p>
+<p>Le chronomètre ne s’arrête donc pas réellement à la ligne d’arrivée.</p>
+<p>Une fois la LST terminée, le prochain rendez-vous est déjà fixé.</p>
+<p>Une fois l’AMT terminé, il faudra encore être capable de se présenter sur une dernière ligne de départ.</p>
+</article>
+<article class="content-card visual-ultra visual-experience" id="chapter-5-2">
+<h2>Une autre manière de vivre l’AMT</h2>
+<p>Ce format permet également de construire le Supr’AMT autour de l’événement lui-même.</p>
+<p>Les participants emprunteront les mêmes parcours, prendront les mêmes départs et partageront les mêmes courses que les autres participants.</p>
+<p>Mais ils vivront l’ensemble différemment.</p>
+<p>Une arrivée sera immédiatement suivie de la préparation de la prochaine course.</p>
+<p>Il faudra gérer l’effort, la récupération, l’alimentation, le sommeil, le matériel et surtout le temps disponible entre chaque départ.</p>
+<p>Le défi ne sera donc pas uniquement physique.</p>
+<p>Il faudra savoir enchaîner.</p>
+</article>
+<article class="content-card visual-ultra visual-organisation" id="chapter-5-3">
+<h2>Simplifier l’organisation sans diminuer le défi</h2>
+<p>Cette évolution répond également à un objectif très concret pour notre organisation.</p>
+<p>Le format spécifique mis en place en 2026 demandait une organisation supplémentaire importante : parcours, logistique, ravitaillements, transports et équipes dédiées.</p>
+<p>Pour cette première édition organisée en avril, nous souhaitons simplifier certains dispositifs afin de concentrer nos moyens et notre énergie sur les évolutions indispensables liées au changement de date.</p>
+<p>Le nouveau Supr’AMT utilise les courses et les moyens déjà déployés pour l’événement.</p>
+<p>Nous simplifions l’organisation. Pas le défi.</p>
+</article>
+<article class="content-card visual-forge visual-ultra" data-tone="fire" id="chapter-5-4">
+<h2>Un Supr’AMT parfaitement dans l’esprit 2027</h2>
+<p>Difficile également d’imaginer un format plus directement lié à notre ligne directrice :</p>
+<p class="kicker-line">FORGÉS PAR L’EFFORT</p>
+<p>Trois départs.</p>
+<p>Trois courses.</p>
+<p>Trois fois la nécessité de se remettre en mouvement.</p>
+<p>Et jusqu’à la dernière ligne d’arrivée, une seule certitude :</p>
+<p class="line-item">rien n’est acquis avant d’avoir terminé la CDS.</p>
+<p>Les modalités précises de participation, les éventuelles conditions d’accès, les équipements et le fonctionnement du classement seront définis dans le règlement sportif de l’édition 2027.</p>
+</article></div>
+<nav aria-label="Navigation entre les chapitres" class="pager">
+<a class="pager-button" data-page="chapter-4" href="#chapter-4"><small>← Précédent</small><strong>Le programme sportif de l’AMT 2027</strong></a>
+<a class="pager-button" data-page="chapter-6" href="#chapter-6"><small>Suivant →</small><strong>Rejoignez le collectif de l’Ardennes Méga Trail 2027</strong></a>
+</nav>
+</section>
+<section aria-labelledby="chapter-6-title" class="chapter document-page theme-collective" id="chapter-6">
+<header class="chapter-header">
+<span class="chapter-index">Chapitre 06 / 07</span>
+<h1 id="chapter-6-title">6. Rejoignez le collectif de l’Ardennes Méga Trail 2027</h1>
+</header>
+<div class="cards">
+<article class="content-card visual-collective visual-recruit" id="chapter-6-0">
+<p>L’AMT, ce sont des centaines de bénévoles mobilisés chaque année pour faire vivre l’événement. Mais derrière le week-end de course, il y a aussi plusieurs mois de préparation et une équipe qui travaille toute l’année pour construire l’événement : le collectif AMT.</p>
+<p>Pour préparer l’édition 2027, qui se déroulera les 16 et 17 avril, nous faisons évoluer son fonctionnement et souhaitons également ouvrir le collectif à celles et ceux qui auraient envie de s’investir davantage dans l’aventure.</p>
+<p>Être bénévole sur l’AMT et faire partie du collectif sont deux engagements différents, mais indispensables.</p>
+<p>Le bénévole intervient principalement pendant l’événement, sur une mission ou un créneau défini.</p>
+<p>Faire partie du collectif signifie s’engager plus en amont : préparer une mission, l’organiser, anticiper ses besoins et la porter jusqu’à sa réalisation pendant l’AMT.</p>
+<p>L’objectif pour 2027 est que chaque mission dispose d’un référent et d’un suppléant, afin de mieux répartir les responsabilités, partager les informations et assurer la continuité de l’organisation.</p>
+<p>Le référent n’a pas vocation à tout faire lui-même. Il doit être celui qui anticipe, organise, mobilise, informe et vérifie que tout est prêt.</p>
+<p>Rejoindre le collectif, c’est donc prendre une part plus importante dans la construction de l’événement, mais aussi pouvoir proposer, imaginer et faire évoluer l’AMT.</p>
+<p>C’est particulièrement vrai pour cette édition 2027.</p>
+<p>Le changement de date, la nouvelle organisation et « Forgés par l’Effort » nous donnent l’occasion de repenser certaines habitudes et de construire ensemble de nouvelles idées.</p>
+<p>Le collectif doit être un lieu où chacun peut apporter son expérience et ses compétences au service d’un projet commun.</p>
+</article></div>
+<nav aria-label="Navigation entre les chapitres" class="pager">
+<a class="pager-button" data-page="chapter-5" href="#chapter-5"><small>← Précédent</small><strong>Le Supr’AMT 2027 — Un défi dans le défi</strong></a>
+<a class="pager-button" data-page="chapter-7" href="#chapter-7"><small>Suivant →</small><strong>Organisation du collectif AMT 2027</strong></a>
+</nav>
+</section>
+<section aria-labelledby="chapter-7-title" class="chapter document-page theme-organisation" id="chapter-7">
+<header class="chapter-header">
+<span class="chapter-index">Chapitre 07 / 07</span>
+<h1 id="chapter-7-title">7. Organisation du collectif AMT 2027</h1>
+</header>
+<div class="cards">
+<article class="content-card visual-organisation visual-dashboard" id="organisation-intro-0">
+<h3>Missions, responsabilités et fonctionnement</h3>
+<h3>Organigramme de référence</h3>
+<p>Le schéma « AMT 2027 – Organisation du collectif » validé le 3 septembre 2026 est intégré ici sans modification.</p>
+<p>Il constitue la représentation synthétique de l’organisation détaillée ci-dessous.</p>
+<p>L’organisation de l’AMT 2027 repose sur un principe simple : chaque membre du collectif est référent d’une mission clairement identifiée et la porte tout au long de l’année jusqu’à sa réalisation pendant l’événement.</p>
+<p>Chaque mission dispose :</p>
+<p class="line-item">d’un référent, responsable de son organisation ;</p>
+<p>d’un suppléant, suffisamment impliqué et informé pour accompagner le référent et assurer la continuité si nécessaire.</p>
+<p>Le référent n’a pas vocation à tout réaliser lui-même. Il doit en revanche anticiper, organiser, mobiliser, transmettre les informations, vérifier que les moyens nécessaires sont réunis et s’assurer du bon fonctionnement de sa mission.</p>
+<p>En parallèle, les principaux lieux de l’AMT disposent d’un Responsable d’Espace. Celui-ci n’est pas responsable des missions accueillies dans son espace : il est responsable du bon fonctionnement du lieu et de la coordination entre les différentes activités qui y sont implantées.</p>
+<p>Une mission peut donc être rattachée fonctionnellement à un pôle tout en étant physiquement installée dans un autre espace pendant l’AMT.</p>
+</article>
+<div class="organisation-schema">
+<img src="amt-2027-organisation-collectif.jpeg" alt="AMT 2027 – Organisation du collectif" loading="lazy" decoding="async"/>
+</div>
+</div>
+<div class="organisation-sections">
+<details class="organisation-section visual-org-unit" data-unit="1" open="">
+<summary><strong>7.1. Coordination générale</strong></summary>
+<div class="organisation-body">
+<p class="meta-line">Référent : Alex</p>
+<h3>Finalité</h3>
+<p>Assurer la vision globale de l’AMT, la cohérence de son organisation et la coordination du collectif.</p>
+<p>La Coordination Générale définit le cadre, suit l’avancement des grandes missions et réalise les arbitrages nécessaires. Elle ne doit pas se substituer aux référents dans la réalisation de leurs missions.</p>
+<h3>Périmètre</h3>
+<p>Définition des grandes orientations de l’édition</p>
+<p>Construction et suivi du calendrier général</p>
+<p>Organisation du collectif</p>
+<p>Attribution et suivi des missions</p>
+<p>Animation des réunions</p>
+<p>Coordination des référents et responsables d’espace</p>
+<p>Suivi de l’avancement global</p>
+<p>Identification des difficultés ou retards</p>
+<p>Arbitrages dépassant le périmètre d’un référent</p>
+<p>Vision globale des besoins humains, matériels et financiers</p>
+<p>Coordination générale pendant l’événement</p>
+<p>Organisation du bilan et préparation de l’édition suivante</p>
+<p>Pendant l’AMT, la Coordination Générale doit conserver une vision d’ensemble et rester disponible pour les décisions ayant un impact sur l’événement.</p>
+</div>
+</details>
+<details class="organisation-section visual-org-unit" data-unit="2">
+<summary><strong>7.2. Administration &amp; Finances</strong></summary>
+<div class="organisation-body">
+<h3>Mission — Administration &amp; Réglementation</h3>
+<p class="meta-line">Référent : à définir — Suppléant : à définir</p>
+<p>Périmètre : dossier Préfecture ; assurances de l’événement et des salles ; SACEM ; locations et conventions des salles ; courriers officiels ; autorisations administratives ; suivi des obligations réglementaires ; calendrier des échéances ; archivage des documents.</p>
+<p>Le référent garantit que les démarches nécessaires sont identifiées suffisamment tôt, réalisées dans les délais et suivies jusqu’à leur validation.</p>
+<h3>Mission — Finances &amp; Subventions</h3>
+<p class="meta-line">Référent : à définir — Suppléant : à définir</p>
+<p>Périmètre : construction du budget prévisionnel ; suivi des recettes et dépenses ; engagements financiers ; identification des écarts ; alertes auprès de la Coordination Générale ; demandes de subventions ; suivi des dossiers ; justificatifs ; bilans financiers demandés par les financeurs.</p>
+</div>
+</details>
+<details class="organisation-section visual-org-unit" data-unit="3">
+<summary><strong>7.3. Logistique générale</strong></summary>
+<div class="organisation-body">
+<h3>Mission — Logistique générale de l’événement</h3>
+<p class="meta-line">Référent : à définir — Suppléant : à définir</p>
+<p>Coordination des besoins matériels des différents référents ; matériel commun ; transports et mouvements de matériel ; véhicules et remorques logistiques ; montage et démontage ; moyens logistiques transversaux ; coordination logistique pendant l’événement.</p>
+<h3>Mission — Local AMT &amp; Gestion du matériel</h3>
+<p class="meta-line">Référent : à définir — Suppléant : à définir</p>
+<p>Organisation du local AMT ; rangement ; inventaire ; stockage ; entrées et sorties ; entretien ; renouvellement ; préparation avant l’événement ; contrôle des retours ; remise en état et rangement après l’AMT.</p>
+</div>
+</details>
+<details class="organisation-section visual-org-unit" data-unit="4">
+<summary><strong>7.4. Pôle Parcours &amp; Terrain</strong></summary>
+<div class="organisation-body">
+<p>Le Pôle Parcours &amp; Terrain constitue le noyau de préparation et de pilotage opérationnel des parcours.</p>
+<h3>Parcours &amp; Terrain</h3>
+<p class="meta-line">Référent : à définir — Suppléant : à définir</p>
+<p>Définition et évolution des parcours ; reconnaissances ; découpage ; points sensibles ; sécurisation ; entretien et préparation du terrain ; balisage, vérification et débalisage ; serre-files ; coordination générale des problématiques terrain.</p>
+<p>Le référent construit et pilote l’organisation permettant leur réalisation.</p>
+<p>Il pilote également l’Espace Logistique Terrain, physiquement installé dans l’Espace Bénévole : stockage, dotations, matériel de balisage/débalisage, matériel destiné aux équipes terrain et signaleurs, sorties et retours.</p>
+<h3>Coordination des 9 secteurs</h3>
+<p class="meta-line">Référent : à définir — Suppléant : à définir</p>
+<p>Animation des responsables de secteur ; suivi de leur préparation ; réunions ; harmonisation ; centralisation des besoins ; besoins humains et matériels ; signaleurs ; coordination avec Parcours &amp; Terrain et PC Course ; coordination opérationnelle pendant l’événement.</p>
+<p>Le Coordinateur pilote également l’Espace Logistique Ravitaillements, implanté dans l’Espace Bénévole : réception, stockage, répartition, préparation des dotations, récupération ou dispatch, suivi des stocks et réapprovisionnements.</p>
+<h3>PC Course</h3>
+<p class="meta-line">Référent : à définir — Suppléant : à définir</p>
+<p>À l’année : conception du PC Course ; règlement ; Roadbook ; procédures ; équipe ; Chefs de Salle ; commissaires de course ; contrôles de matériel ; communications ; circuits de remontée d’information ; incidents/secours/abandons ; coordination secteurs, médical et secours ; outils de suivi.</p>
+<h3>Le Chef de Salle</h3>
+<p>Pendant la course, il devient le responsable opérationnel du PC Course.</p>
+<p>Il centralise les informations terrain, évalue les incidents, prend les décisions opérationnelles, déclenche et coordonne les secours, assure les liaisons nécessaires et informe la Coordination Générale lorsqu’une situation peut avoir un impact sur l’événement.</p>
+<p>Le Chef de Salle décide et coordonne la réponse à un incident.</p>
+<p>La Coordination Générale décide de l’évolution de l’événement.</p>
+<p>L’arrêt d’une course, une modification de parcours, l’activation d’une bifurcation ou une adaptation liée à un phénomène météorologique relèvent donc de la Coordination Générale.</p>
+</div>
+</details>
+<details class="organisation-section visual-org-unit" data-unit="5">
+<summary><strong>7.5. Les 9 secteurs</strong></summary>
+<div class="organisation-body">
+<p>Chaque secteur constitue une mission à part entière du collectif, avec un Responsable de secteur — Référent et un Suppléant.</p>
+<p>Tournavaux</p>
+<p>Bogny</p>
+<p>Deville</p>
+<p>Laifour</p>
+<p>Revin</p>
+<p>Monthermé</p>
+<p>Naux</p>
+<p>Linchamps</p>
+<p>Les Hautes-Rivières</p>
+<p>Le Responsable de secteur devient progressivement le référent local de l’AMT sur son territoire.</p>
+<p>À l’année : connaissance du secteur ; reconnaissances ; points sensibles ; relations habitants et communes ; besoins humains et matériels ; signaleurs ; ravitaillements ; accès et logistique ; transmission au Coordinateur.</p>
+<p>Avant l’événement, il confirme que son secteur est prêt : bénévoles, postes signaleurs, consignes, ravitaillements, matériel, accès, points sensibles et moyens de communication.</p>
+<p>Pendant l’AMT, il coordonne son secteur. En cas d’incident nécessitant des secours, il transmet immédiatement au PC Course.</p>
+</div>
+</details>
+<details class="organisation-section visual-org-unit" data-unit="6">
+<summary><strong>7.6. Les Responsables d’Espace</strong></summary>
+<div class="organisation-body">
+<p>Chaque grande zone physique dispose d’un Responsable d’Espace et d’un Suppléant.</p>
+<p>Il est le responsable du lieu, pas le responsable de toutes les missions qui y sont présentes.</p>
+<p>Son périmètre comprend : organisation générale ; implantation ; coordination ; flux ; besoins communs ; circulation ; signalétique ; ouverture/fermeture ; propreté ; déchets ; sanitaires et douches lorsqu’ils sont présents ; problèmes liés au lieu ; montage et remise en état.</p>
+<p>La signalétique est une responsabilité transversale portée collectivement par les responsables d’espace, chacun sur son périmètre.</p>
+</div>
+</details>
+<details class="organisation-section visual-org-unit" data-unit="7">
+<summary><strong>7.7. Espace Bénévole</strong></summary>
+<div class="organisation-body">
+<p class="meta-line">Responsable d’Espace : à définir — Suppléant : à définir</p>
+<p>Missions présentes :</p>
+<p class="line-item">Gestion &amp; Communication Bénévoles — appel à bénévoles ; Vorg ; inscriptions ; communication ; relances ; affectations ; informations pratiques ; accueil ; soirée bénévoles ; fidélisation.</p>
+<p>Camping Bénévoles — dimensionnement ; implantation ; organisation ; matériel ; accueil ; sanitaires ; fonctionnement ; remise en état.</p>
+<p>Restauration Bénévoles — repas ; besoins ; approvisionnement ; horaires ; matériel ; équipe ; besoins particuliers ; fonctionnement.</p>
+<p>Espace Logistique Ravitaillements — Référent : Coordinateur des 9 secteurs.</p>
+<p>Espace Logistique Terrain — Référent : Référent Parcours &amp; Terrain.</p>
+</div>
+</details>
+<details class="organisation-section visual-org-unit" data-unit="8">
+<summary><strong>7.8. Salle Élie Badré</strong></summary>
+<div class="organisation-body">
+<p class="meta-line">Responsable d’Espace : à définir — Suppléant : à définir</p>
+<p>Missions présentes :</p>
+<p class="line-item">Restauration Coureurs &amp; Petit-déjeuner — besoins ; menus ; quantités ; commandes ; matériel ; équipe ; préparation et services.</p>
+<p>Inscriptions &amp; Dossards — inscriptions ; litiges ; préparation dossards ; retraits chez Décathlon et sur la Base ; équipes ; procédures ; récupération des dossards ; lots Finisher. Implantations : Décathlon, Salle Élie Badré et Gymnase.</p>
+<p>Textiles &amp; Boutique AMT — conception ; commandes ; réception ; stocks ; distribution ; boutique ; ventes.</p>
+<p>Village AMT — exposants ; implantation ; besoins techniques ; accueil ; installation ; suivi ; démontage.</p>
+<p>Paramédical &amp; Récupération — kinésithérapeutes ; ostéopathes ; massages ; intervenants ; espaces ; matériel. Mission distincte du Médical.</p>
+<p>Dortoir Bénévoles — rattaché fonctionnellement à Hébergement/Camping Bénévoles.</p>
+<p>Caisse et Buvette — implantations des missions transversales correspondantes.</p>
+</div>
+</details>
+<details class="organisation-section visual-org-unit" data-unit="9">
+<summary><strong>7.9. Gymnase</strong></summary>
+<div class="organisation-body">
+<p class="meta-line">Responsable d’Espace : à définir — Suppléant : à définir</p>
+<p>Il assure notamment le fonctionnement du lieu, sa propreté et les douches.</p>
+<p>Missions présentes :</p>
+<p class="line-item">Friterie — organisation ; approvisionnements ; matériel ; équipe ; préparation ; service ; stocks ; nettoyage.</p>
+<p>Médical — dispositif médical ; moyens humains et matériels ; espace médical ; secours ; coordination PC Course.</p>
+<p>Consignes — dépôt ; identification ; stockage ; retrait ; flux ; équipe ; procédures.</p>
+<p>Sont également implantés au Gymnase mais rattachés ailleurs :</p>
+<p class="flow-line">PC Course → Pôle Parcours &amp; Terrain</p>
+<p class="flow-line">Récupération des dossards → Inscriptions &amp; Dossards</p>
+<p class="flow-line">Lots Finisher → Inscriptions &amp; Dossards</p>
+<p class="flow-line">Ravitaillement Arrivée → responsable du secteur concerné</p>
+<p class="flow-line">Douches → Responsable du Gymnase</p>
+</div>
+</details>
+<details class="organisation-section visual-org-unit" data-unit="10">
+<summary><strong>7.10. Départ / Arrivée / Base</strong></summary>
+<div class="organisation-body">
+<p class="meta-line">Responsable d’Espace : à définir — Suppléant : à définir</p>
+<p>Il assure également directement l’organisation du Parking Vélo.</p>
+<p>Missions présentes :</p>
+<p class="line-item">Sono &amp; Retransmission TV — besoins techniques ; prestataires ; implantation ; sonorisation ; vidéo ; électricité/réseau ; contenus ; fonctionnement.</p>
+<p>Kid’s — organisation complète ; parcours ; humains ; matériel ; sécurité ; départs/arrivées ; animation ; bénévoles.</p>
+<p>Départs &amp; Arrivées — départs ; sas ; flux ; horaires ; chronométrage ; sono ; PC Course ; arrivées ; pics ; fluidité et sécurité.</p>
+<p>Podiums &amp; Récompenses — protocoles ; récompenses ; catégories ; programme ; personnes à appeler ; chronométrage ; partenaires/élus ; animation et cérémonies.</p>
+</div>
+</details>
+<details class="organisation-section visual-org-unit" data-unit="11">
+<summary><strong>7.11. Communication Participants</strong></summary>
+<div class="organisation-body">
+<p class="meta-line">Référent : à définir — Suppléant : à définir</p>
+<p>Mission transversale menée tout au long de l’année.</p>
+<p>Les référents de mission produisent et valident l’information relevant de leur périmètre ; Communication Participants organise sa mise en forme, sa cohérence et sa diffusion.</p>
+<p>Elle couvre notamment : calendrier de communication ; réseaux sociaux ; newsletters ; inscriptions ; présentation des courses ; informations pratiques ; horaires ; dossards ; accès ; parkings ; navettes ; matériel obligatoire ; ravitaillements ; consignes ; accompagnateurs ; briefings coureurs ; informations pendant l’événement ; modifications décidées ; météo/sécurité ; informations post-course ; résultats ; remerciements et retour d’expérience.</p>
+<p>Elle constitue le point de coordination de l’information destinée aux coureurs et à leurs accompagnateurs.</p>
+</div>
+</details>
+<details class="organisation-section visual-org-unit" data-unit="12">
+<summary><strong>7.12. Partenariats &amp; VIP</strong></summary>
+<div class="organisation-body">
+<p>Deux missions distinctes qui travaillent ensemble toute l’année.</p>
+<h3>Partenariats</h3>
+<p class="meta-line">Référent : à définir — Suppléant : à définir</p>
+<p>Recherche et prospection ; offres ; négociation ; engagements ; suivi ; contreparties ; coordination ; invités ; transmission au VIP ; fidélisation et bilan.</p>
+<p>Le référent reste le contact privilégié du partenaire tout au long de l’année.</p>
+<h3>VIP &amp; Relations publiques</h3>
+<p class="meta-line">Référent : à définir — Suppléant : à définir</p>
+<p>Accueil VIP ; espace ; programme ; invitations ; partenaires, élus et institutions ; confirmations ; informations ; accès et badges ; restauration ; moyens humains et matériels ; accueil ; accompagnement ; temps forts ; équipe.</p>
+<p>Partenariats construit et entretient la relation. VIP organise et garantit la qualité de l’accueil pendant l’événement.</p>
+</div>
+</details>
+<details class="organisation-section visual-org-unit" data-unit="13">
+<summary><strong>7.13. Missions transversales Caisse &amp; Buvette</strong></summary>
+<div class="organisation-body">
+<h3>Caisse</h3>
+<p class="meta-line">Référent : à définir — Suppléant : à définir</p>
+<p>Implantations : Salle Élie Badré et Départ/Arrivée/Base.</p>
+<p>Moyens de paiement ; fonds ; procédures ; répartition ; suivi ; remontées ; clôtures ; remise des fonds.</p>
+<h3>Buvette</h3>
+<p class="meta-line">Référent : à définir — Suppléant : à définir</p>
+<p>Implantations : Salle Élie Badré et Départ/Arrivée/Base.</p>
+<p>Besoins ; commandes ; boissons ; stocks ; matériel ; équipes ; deux points de vente ; réapprovisionnements ; suivi ; rangement et bilan.</p>
+</div>
+</details>
+<details class="organisation-section visual-org-unit" data-unit="14">
+<summary><strong>7.14. Circulation &amp; Parking hors Base</strong></summary>
+<div class="organisation-body">
+<p class="meta-line">Responsable de zone : à définir — Suppléant : à définir</p>
+<h3>Circulation &amp; Parkings</h3>
+<p class="meta-line">Référent : à définir — Suppléant : à définir</p>
+<p>Plan de circulation ; parkings ; accès ; signalisation extérieure ; besoins humains ; bénévoles ; consignes ; communes et services ; anticipation des flux ; gestion opérationnelle.</p>
+<h3>Flotte véhicules AMT</h3>
+<p class="meta-line">Référent : à définir — Suppléant : à définir</p>
+<p>Besoins ; affectation des véhicules ; conducteurs ; planning ; clés ; départs/retours ; carburant/recharge ; nettoyage ; contrôle et restitution.</p>
+</div>
+</details>
+<details class="organisation-section visual-org-unit" data-unit="15">
+<summary><strong>7.15. Mission transversale — Développement Durable</strong></summary>
+<div class="organisation-body">
+<p class="meta-line">Référent : à définir — Suppléant : à définir</p>
+<h3>Finalité</h3>
+<p>Le Développement Durable est une mission transversale indispensable, intégrée à l’ensemble de l’organisation de l’AMT 2027.</p>
+<p>L’objectif n’est pas de révolutionner le fonctionnement de l’événement ni de rechercher une perfection immédiate. Il s’agit d’avoir la volonté de faire mieux, de manière réaliste et progressive, en identifiant pour chaque mission une ou plusieurs actions écoresponsables adaptées à son périmètre.</p>
+<p>Le référent accompagne les missions, facilite la mise en œuvre des actions et veille à ce que les engagements restent concrets, mesurables et compatibles avec les contraintes de l’événement.</p>
+<h3>Périmètre général</h3>
+<p>Orientations écoresponsables ; au moins une action d’amélioration avec chaque référent ; recherche de solutions ; choix matériels et logistiques ; déchets et tri ; eau et énergie ; achats à usage unique ; réemploi, mutualisation et location ; impressions ; mobilité ; sensibilisation ; coordination des espaces ; suivi et bilan environnemental.</p>
+<h3>Une action écoresponsable sur chaque mission</h3>
+<p>Chaque référent est invité à identifier une action concrète pouvant concerner fournisseurs, gaspillage, emballages, réemploi, mutualisation, impressions, déplacements, eau, énergie, déchets, sensibilisation ou durée de vie des équipements.</p>
+<p>L’objectif est une amélioration concrète par rapport à l’édition précédente.</p>
+<h3>Accompagnement</h3>
+<p>Le référent Développement Durable échange avec les missions, identifie les impacts, propose des pistes, vérifie leur faisabilité, coordonne les actions liées, suit les engagements et alerte la Coordination Générale si nécessaire.</p>
+<p>Le Développement Durable accompagne, coordonne et mesure ; il ne se substitue pas aux missions.</p>
+<h3>Quantification</h3>
+<p>Les actions sont quantifiées autant que possible : déchets et tri ; déchets évités ; contenants réutilisables ; emballages évités ; denrées valorisées ; produits locaux ou responsables ; impressions évitées ; matériel réemployé ; trajets mutualisés ; eau/énergie ; sensibilisation ; nombre de missions engagées.</p>
+<p>Lorsque la mesure exacte n’est pas possible, une estimation documentée peut être utilisée.</p>
+<h3>Bilan et amélioration continue</h3>
+<p>Après l’événement : actions prévues et réalisées ; résultats ; difficultés ; solutions efficaces ; actions à poursuivre et améliorations pour l’édition suivante.</p>
+<h3>Promotion des actions responsables</h3>
+<p>Les actions réelles pourront être valorisées via réseaux sociaux, newsletters, site, briefings, bénévoles, signalétique, partenaires, bilan et relations institutionnelles.</p>
+<p>La communication doit rester cohérente, crédible et proportionnée aux actions réellement réalisées.</p>
+<p>L’objectif est de faire connaître les efforts réalisés, d’encourager les bonnes pratiques et de montrer que chaque amélioration, même modeste, contribue à rendre l’AMT plus responsable.</p>
+</div>
+</details>
+<details class="organisation-section visual-org-unit" data-unit="16">
+<summary><strong>7.16. Principes de fonctionnement à retenir</strong></summary>
+<div class="organisation-body">
+<p>Chaque membre du collectif porte une mission. Il en est le référent tout au long de l’année jusqu’à sa réalisation pendant l’événement.</p>
+<p>Chaque mission possède un référent et un suppléant. Le suppléant doit connaître suffisamment le sujet pour accompagner le référent et assurer la continuité.</p>
+<p>Être référent ne signifie pas tout faire soi-même. Le référent organise, anticipe, mobilise, répartit, informe et vérifie.</p>
+<p>Chaque mission doit rechercher une amélioration écoresponsable. Le Développement Durable accompagne cette démarche, aide à la rendre concrète, mesure les résultats et contribue à les promouvoir.</p>
+<p>Chaque espace possède un responsable. Il garantit le fonctionnement du lieu mais ne se substitue pas aux référents des missions présentes.</p>
+<p>Une mission peut avoir plusieurs implantations physiques. Caisse, Buvette ou Dossards en sont des exemples.</p>
+<p>Une mission peut être fonctionnellement rattachée à un pôle tout en étant physiquement installée ailleurs. C’est notamment le cas des Espaces Logistique Terrain et Logistique Ravitaillements.</p>
+<p>La signalétique est une responsabilité commune aux responsables d’espace. Chacun est responsable de la lisibilité de son propre périmètre.</p>
+<p>La chaîne de décision terrain doit rester claire. Les incidents de parcours sont gérés et les secours coordonnés par le Chef de Salle du PC Course. Les décisions modifiant le déroulement général de l’événement relèvent de la Coordination Générale.</p>
+<p>L’objectif de cette organisation n’est pas de multiplier les responsables, mais au contraire de faire en sorte que chaque sujet ait un pilote clairement identifié, que chacun sache à qui s’adresser et que la charge soit réellement répartie au sein du collectif.</p>
+</div>
+</details>
+</div>
+<nav aria-label="Navigation entre les chapitres" class="pager">
+<a class="pager-button" data-page="chapter-6" href="#chapter-6"><small>← Précédent</small><strong>Rejoignez le collectif de l’Ardennes Méga Trail 2027</strong></a>
+<a class="pager-button" data-page="home" href="#home"><small>Suivant →</small><strong>Revenir au dossier</strong></a>
+</nav>
+</section>
+<footer class="footer"><span>ARDENNES MÉGA TRAIL 2027</span><span>FORGÉS PAR L’EFFORT</span></footer>
+</main>
+</div>
+<div class="search-overlay" hidden="" id="searchOverlay">
+<section aria-labelledby="searchTitle" aria-modal="true" class="search-dialog" role="dialog">
+<div class="search-shell">
+<div class="search-head"><div><span class="eyebrow">Dossier complet</span><h2 id="searchTitle">Rechercher dans le dossier</h2></div><button aria-label="Fermer" class="close-button" id="searchClose" type="button">×</button></div>
+<label class="search-field"><span aria-hidden="true">⌕</span><input autocomplete="off" id="searchInput" placeholder="Mission, Étincelle, Supr’AMT…" type="search"/></label>
+<div class="search-hint" id="searchHint">Saisissez au moins deux caractères.</div>
+<div aria-live="polite" class="search-results" id="searchResults"></div>
+</div>
+</section>
+</div>
+<script>
+(() => {
+  const allPages = [...document.querySelectorAll('.document-page')];
+  const navLinks = [...document.querySelectorAll('[data-page]')];
+  const sidebar = document.getElementById('sidebar');
+  const scrim = document.getElementById('scrim');
+  const menuButton = document.getElementById('menuToggle');
+  const progress = document.getElementById('progressBar');
+  const searchOverlay = document.getElementById('searchOverlay');
+  const searchInput = document.getElementById('searchInput');
+  const searchResults = document.getElementById('searchResults');
+  const searchHint = document.getElementById('searchHint');
+
+  if (!allPages.length || !sidebar || !progress) return;
+
+  function validPage(id) {
+    return id === 'home' || /^chapter-[1-7]$/.test(id);
+  }
+
+  function showPage(id, shouldScroll = true) {
+    const target = validPage(id) ? id : 'home';
+    allPages.forEach((page) => page.classList.toggle('active', page.id === target));
+    document.querySelectorAll('.nav-item').forEach((link) => link.classList.toggle('active', link.dataset.page === target));
+    const number = target === 'home' ? 0 : Number(target.split('-')[1]);
+    progress.style.width = number ? ((number / 7) * 100) + '%' : '0%';
+    sidebar.classList.remove('open');
+    scrim.classList.remove('open');
+    menuButton.setAttribute('aria-expanded', 'false');
+    if (shouldScroll) window.scrollTo(0, 0);
+  }
+
+  function pageFromHash() {
+    return location.hash.slice(1) || 'home';
+  }
+
+  document.documentElement.classList.remove('no-js');
+  document.documentElement.classList.add('js');
+  showPage(pageFromHash(), false);
+
+  document.addEventListener('click', (event) => {
+    const pageLink = event.target.closest('[data-page]');
+    if (pageLink) {
+      event.preventDefault();
+      const id = pageLink.dataset.page;
+      if (location.hash === '#' + id) showPage(id);
+      else location.hash = id;
+    }
+
+    const result = event.target.closest('[data-result-index]');
+    if (result) {
+      const element = document.querySelectorAll('[data-searchable]')[Number(result.dataset.resultIndex)];
+      if (!element) return;
+      const page = element.closest('.document-page');
+      const details = element.closest('details');
+      if (details) details.open = true;
+      searchOverlay.hidden = true;
+      showPage(page.id, false);
+      history.replaceState(null, '', '#' + page.id);
+      requestAnimationFrame(() => element.scrollIntoView({ block: 'center' }));
+    }
+  });
+
+  window.addEventListener('hashchange', () => showPage(pageFromHash()));
+
+  menuButton.addEventListener('click', () => {
+    const open = !sidebar.classList.contains('open');
+    sidebar.classList.toggle('open', open);
+    scrim.classList.toggle('open', open);
+    menuButton.setAttribute('aria-expanded', String(open));
+  });
+  scrim.addEventListener('click', () => showPage(pageFromHash(), false));
+
+  function openSearch() {
+    searchOverlay.hidden = false;
+    requestAnimationFrame(() => searchInput.focus());
+  }
+  function closeSearch() {
+    searchOverlay.hidden = true;
+    document.getElementById('searchOpen').focus();
+  }
+
+  document.getElementById('searchOpen').addEventListener('click', openSearch);
+  document.getElementById('searchClose').addEventListener('click', closeSearch);
+  searchOverlay.addEventListener('click', (event) => { if (event.target === searchOverlay) closeSearch(); });
+
+
+
+  /* Editorial enhancement: preserves every original text character. */
+  function wrapSemanticTerms(root, groups) {
+    if (!root) return;
+    const terms = Object.entries(groups)
+      .flatMap(([cls, words]) => words.map((word) => ({ cls, word })))
+      .sort((a, b) => b.word.length - a.word.length);
+    const escaped = terms.map(({ word }) => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    const rx = new RegExp('(' + escaped.join('|') + ')', 'giu');
+    const classify = (value) => {
+      const lower = value.toLocaleLowerCase('fr');
+      const found = terms.find(({ word }) => word.toLocaleLowerCase('fr') === lower);
+      return found ? found.cls : '';
+    };
+
+    const targets = root.querySelectorAll('p:not(.kicker-line):not(.schedule-line):not(.flow-line):not(.meta-line), blockquote');
+    targets.forEach((target) => {
+      const walker = document.createTreeWalker(target, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach((node) => {
+        if (!node.nodeValue || !rx.test(node.nodeValue)) { rx.lastIndex = 0; return; }
+        rx.lastIndex = 0;
+        const text = node.nodeValue;
+        const frag = document.createDocumentFragment();
+        let last = 0;
+        text.replace(rx, (match, _capture, offset) => {
+          if (offset > last) frag.append(document.createTextNode(text.slice(last, offset)));
+          const span = document.createElement('span');
+          span.className = 'semantic-word ' + classify(match);
+          span.textContent = match;
+          frag.append(span);
+          last = offset + match.length;
+          return match;
+        });
+        if (last < text.length) frag.append(document.createTextNode(text.slice(last)));
+        node.replaceWith(frag);
+      });
+    });
+  }
+
+  const semanticGroups = {
+    'semantic-fire': ['Forgés par l’Effort', 'Forgée par l’Effort', 'forgés', 'forgée', 'forge', 'Forger', 'se forge', 'matière brute', 'matière', 'feu', 'transformation', 'transformer', 'étincelle'],
+    'semantic-effort': ['effort collectif', 'effort', 'coureur', 'sentiers', 'montées', 'descentes', 'météo', 'fatigue', 'kilomètres', 'défi'],
+    'semantic-collective': ['collectivement', 'collectif', 'ensemble', 'bénévole', 'bénévoles', 'partenaires', 'équipes', 'toutes celles et ceux', 'chacun'],
+    'semantic-territory': ['territoire', 'Ardennes', 'forêt', 'industriel', 'ouvrier', 'ouvrière', 'savoir-faire', 'transmission']
+  };
+
+  wrapSemanticTerms(document.getElementById('chapter-3'), semanticGroups);
+  document.querySelectorAll('[data-tone="fire"]').forEach((card) => wrapSemanticTerms(card, semanticGroups));
+  wrapSemanticTerms(document.getElementById('chapter-6-0'), semanticGroups);
+
+  const keyStatements = new Set([
+    'faire évoluer l’Ardennes Méga Trail sans perdre ce qui fait son identité.',
+    'identifier un problème doit nous permettre de chercher une solution.',
+    'mettre du sens derrière nos choix.',
+    'L’AMT lui-même se forge par l’effort collectif.',
+    'Une édition Forgée par l’Effort.',
+    'Parce qu’une étincelle suffit parfois pour transformer un rêve en réalité.',
+    'rien n’est acquis avant d’avoir terminé la CDS.'
+  ]);
+  document.querySelectorAll('.document-page p').forEach((p) => {
+    if (keyStatements.has(p.textContent.trim())) p.classList.add('key-statement');
+  });
+
+  document.querySelectorAll('.schedule-line').forEach((line) => {
+    const original = line.textContent;
+    const match = original.match(/^(.+?)(\s+—\s+)(.+)$/);
+    if (!match) {
+      line.classList.add('schedule-date');
+      return;
+    }
+    line.replaceChildren();
+    const time = document.createElement('span');
+    time.className = 'schedule-time';
+    time.textContent = match[1];
+    const sep = document.createElement('span');
+    sep.className = 'schedule-sep';
+    sep.textContent = match[2];
+    const title = document.createElement('span');
+    title.className = 'schedule-title';
+    title.textContent = match[3];
+    line.append(time, sep, title);
+  });
+
+
+  const searchable = [...document.querySelectorAll('.document-page h1, .document-page h2, .document-page h3, .document-page p, .document-page blockquote, .document-page summary strong')];
+  searchable.forEach((element) => element.dataset.searchable = '');
+
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.trim().toLocaleLowerCase('fr');
+    searchResults.replaceChildren();
+    if (query.length < 2) {
+      searchHint.textContent = 'Saisissez au moins deux caractères.';
+      return;
+    }
+    const matches = searchable.map((element, index) => ({ element, index })).filter(({ element }) => element.textContent.toLocaleLowerCase('fr').includes(query)).slice(0, 40);
+    searchHint.textContent = matches.length + ' résultat' + (matches.length > 1 ? 's' : '');
+    if (!matches.length) {
+      const empty = document.createElement('div');
+      empty.className = 'no-result';
+      empty.textContent = 'Aucun résultat dans le dossier.';
+      searchResults.append(empty);
+      return;
+    }
+    for (const match of matches) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'search-result';
+      button.dataset.resultIndex = String(match.index);
+      const chapter = match.element.closest('.document-page').id.replace('chapter-', 'Chapitre 0');
+      const label = document.createElement('b');
+      label.textContent = chapter === 'home' ? 'Dossier' : chapter;
+      const text = document.createElement('span');
+      text.textContent = match.element.textContent;
+      button.append(label, text);
+      searchResults.append(button);
+    }
+  });
+
+  window.addEventListener('keydown', (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      openSearch();
+    }
+    if (event.key === 'Escape') {
+      if (!searchOverlay.hidden) closeSearch();
+      sidebar.classList.remove('open');
+      scrim.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
+</script>
+</body>
+</html>
